@@ -2,7 +2,9 @@
 package TestMain;
 
 import Controllers.EquipeController;
+import Controllers.JoueurController;
 import Models.Equipe;
+import Models.Joueur;
 import tools.MaConnexion;
 
 
@@ -13,15 +15,41 @@ public class Main {
      */
     public static void main(String[] args) {
        MaConnexion m = MaConnexion.getInstance();
-      Equipe e=new Equipe(1,"esperence",2, "logo2.png");
+       
+       
+       /* //CRUD équipe
+       
+       Equipe e=new Equipe(1,"etoile",1, "logo1.png");
        EquipeController Ec = new EquipeController();
         Ec.ajouterEquipe(e);
         System.out.println(Ec.afficherEquipe());
         
-      //  Ec.updatePersonne(e);
+        Ec.updateEquipe(e);
       
-      System.out.println(Ec.supprimerEquipe());
-      //System.out.println(Ec.afficherEquipe());
+        System.out.println(Ec.supprimerEquipe());
+        System.out.println(Ec.afficherEquipe());
+      
+      */
+       
+       
+      /* //CRUD joueur
+      
+       Joueur j=new Joueur(1,"user1","test","img1", "milieu",98745632,2);
+        JoueurController Jc = new JoueurController();
+        Jc.ajouterJoueur(j);
+        System.out.println(Jc.afficherJoueur());
+        Jc.updateJoueur(j);
+         System.out.println(Jc.afficherJoueur());
+         
+         System.out.println(Jc.supprimerJoueur());
+         System.out.println(Jc.afficherJoueur());
+      
+      
+      */
+      
+      
     }
-    
+      
+     
+     
 }

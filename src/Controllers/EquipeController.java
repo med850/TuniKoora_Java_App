@@ -62,7 +62,7 @@ public class EquipeController {
     
     
     
-     public List<Equipe> updatePersonne(Equipe e ){
+     public List<Equipe> updateEquipe(Equipe e ){
         List<Equipe> equipes = new ArrayList<>();
         String sql="UPDATE equipe SET nom = ?, classement = ?, logo = ? WHERE id = 15";
          try {
@@ -90,7 +90,7 @@ public class EquipeController {
         try {
             ste=mc.prepareStatement(sql);
             ste.executeUpdate();
-            System.out.println("equipe supprimée");
+            System.out.println("Equipe supprimée");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
