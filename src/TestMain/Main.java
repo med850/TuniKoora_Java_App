@@ -3,8 +3,14 @@ package TestMain;
 
 import Controllers.EquipeController;
 import Controllers.JoueurController;
+import Controllers.ProduitController;
+import Controllers.TicketController;
+
 import Models.Equipe;
 import Models.Joueur;
+import Models.Produit;
+import Models.Ticket;
+
 import tools.MaConnexion;
 
 
@@ -46,8 +52,29 @@ public class Main {
       
       
       */
+//       Produit p=new Produit(1,"gfgf",50,60, "logo1.png","ess",1);
+//       ProduitController Ec = new ProduitController();
+//        Ec.ajouterProduit(p);
+//        System.out.println(Ec.afficherProduit());
+//        
+//        Ec.updateProduit(p);
+//     
+//          System.out.println(Ec.supprimerProduit());
+//          System.out.println(Ec.afficherProduit());
       
-      
+
+//
+//         Ticket t=new Ticket(1,"ess","ess",60,1,1);
+//         TicketController Ec = new TicketController();
+//        Ec.ajouterTicket(t);
+//        System.out.println(Ec.afficherTicket());
+//        
+//     Ec.updateTicket(t);
+//     System.out.println(Ec.afficherTicket());
+//     
+//          System.out.println(Ec.supprimerTicket());
+//          System.out.println(Ec.afficherTicket());
+//      
     }
       
      
