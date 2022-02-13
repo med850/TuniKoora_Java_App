@@ -3,10 +3,15 @@ package TestMain;
 
 import Controllers.EquipeController;
 import Controllers.JoueurController;
+<<<<<<< HEAD
 import Controllers.UserController;
 import Models.Equipe;
 import Models.Joueur;
 import Models.Users;
+=======
+import Models.Equipe;
+import Models.Joueur;
+>>>>>>> fce15cd73be365e3533c1fe6e253cf06dce538aa
 import tools.MaConnexion;
 
 
@@ -48,6 +53,7 @@ public class Main {
       
       
       */
+<<<<<<< HEAD
          
        
        Users u=new Users(1,12345,29630628,"mahdi", "aroua","mahdiaroua@gmailcom","1234","1234","admin");
@@ -60,6 +66,8 @@ public class Main {
         System.out.println(Uc.supprimerUser());
         System.out.println(Uc.afficherUser());
       
+=======
+>>>>>>> fce15cd73be365e3533c1fe6e253cf06dce538aa
       
       
     }
