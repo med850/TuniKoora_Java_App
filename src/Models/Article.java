@@ -59,6 +59,11 @@ public class Article {
     public void setIdUser(int idUser) {
         this.idUser = idUser;
     }
+
+    @Override
+    public String toString() {
+        return "Article{" + "idArticle=" + idArticle + ", titreArticle=" + titreArticle + ", descriptionArticle=" + descriptionArticle + ", idUser=" + idUser + '}';
+    }
     
     
     

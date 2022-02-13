@@ -36,21 +36,20 @@ public class ReviewController {
         }
         
     }
-    
-    
-        public List<Review> afficherReview(){
+    public List<Review> afficherReview(){
         List<Review> review = new ArrayList<>();
-        String sql="select * from review";
+        String sql="SELECT * FROM review ";
         try {
             ste=mc.prepareStatement(sql);
             ResultSet rs=ste.executeQuery();
+            
             while(rs.next()){
-                Review e = new Review();
-                e.setIdReview(rs.getInt("id"));
-                e.setDescriptionReview(rs.getString("description"));
-                e.setIdArticle(rs.getInt("article_id"));
-                e.setIdUser(rs.getInt("user_id"));
-                review.add(e);
+                Review r = new Review();
+                r.setIdReview(rs.getInt("id"));
+                r.setDescriptionReview(rs.getString("description"));
+                r.setIdArticle(rs.getInt("article_id"));
+                r.setIdUser(rs.getInt("user_id"));
+                review.add(r);
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -59,9 +58,7 @@ public class ReviewController {
         return review;
     }    
     
-    
-    
-    
+
      public List<Review> updateReview(Review r ){
         List<Review> review = new ArrayList<>();
         String sql="UPDATE review SET description = ?, article_id = ?, user_id = ? WHERE id = 1";
@@ -80,13 +77,10 @@ public class ReviewController {
         
         
       }
-        
-        
-        
-        
+    
      public List<Review> supprimerReview(){
         List<Review> review = new ArrayList<>();
-        String sql="DELETE FROM review WHERE id=1";
+        String sql="DELETE FROM review WHERE id=2";
         try {
             ste=mc.prepareStatement(sql);
             ste.executeUpdate();

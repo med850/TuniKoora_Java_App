@@ -39,33 +39,31 @@ public class ArticleController {
     }
     
     
-       
     
-    
-//    public List<Article> afficherArticle(){
-//        List<Article> article = new ArrayList<>();
-//        String sql="select * from article where id=7 ";
-//        try {
-//            ste=mc.prepareStatement(sql);
-//            ResultSet rs=ste.executeQuery();
-//            while(rs.next()){
-//                Article a = new Article();
-//                a.setIdArticle(rs.getInt("id"));
-//                a.setTitreArticle(rs.getString("titre"));
-//                a.setDescriptionArticle(rs.getString("description"));
-//                a.setIdUser(rs.getInt("user_id"));
-//                article.add(a);
-//            }
-//        } catch (SQLException ex) {
-//            System.out.println(ex.getMessage());
-//        }
-//        
-//        return article;
-//    }    
+    public List<Article> afficherArticle(){
+        List<Article> article = new ArrayList<>();
+        String sql="select * from article ";
+        try {
+            ste=mc.prepareStatement(sql);
+            ResultSet rs=ste.executeQuery();
+            while(rs.next()){
+                Article a = new Article();
+                a.setIdArticle(rs.getInt("id"));
+                a.setTitreArticle(rs.getString("titre"));
+                a.setDescriptionArticle(rs.getString("description"));
+                a.setIdUser(rs.getInt("user_id"));
+                article.add(a);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        
+        return article;
+    }    
     
      public List<Article> updateArticle(Article e ){
         List<Article> article = new ArrayList<>();
-        String sql="UPDATE article SET titre = ?, description = ?, user_id   = ? WHERE id = 6";
+        String sql="UPDATE article SET titre = ?, description = ?, user_id   = ? WHERE id = 7";
          try {
             ste=mc.prepareStatement(sql);
             ste.setString(1, e.getTitreArticle());
@@ -85,7 +83,7 @@ public class ArticleController {
         
      public List<Article> supprimerArticle(){
         List<Article> article = new ArrayList<>();
-        String sql="DELETE FROM article WHERE id=6";
+        String sql="DELETE FROM article WHERE id=7";
         try {
             ste=mc.prepareStatement(sql);
             ste.executeUpdate();

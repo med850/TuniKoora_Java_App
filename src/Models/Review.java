@@ -58,6 +58,11 @@ public class Review {
     public void setIdUser(int idUser) {
         this.idUser = idUser;
     }
+
+    @Override
+    public String toString() {
+        return "Review{" + "idReview=" + idReview + ", descriptionReview=" + descriptionReview + ", idArticle=" + idArticle + ", idUser=" + idUser + '}';
+    }
     
     
 }
