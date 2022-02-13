@@ -13,16 +13,14 @@ import java.sql.Date;
  */
 public class Review {
     int idReview;
-    Date dateReview;
     String descriptionReview;
     int idArticle;
     int idUser;
 
     public Review(){};
     
-    public Review(int idReview, Date dateReview, String descriptionReview, int idArticle, int idUser) {
+    public Review(int idReview, String descriptionReview, int idArticle, int idUser) {
         this.idReview = idReview;
-        this.dateReview = dateReview;
         this.descriptionReview = descriptionReview;
         this.idArticle = idArticle;
         this.idUser = idUser;
@@ -32,9 +30,6 @@ public class Review {
         return idReview;
     }
 
-    public Date getDateReview() {
-        return dateReview;
-    }
 
     public String getDescriptionReview() {
         return descriptionReview;
@@ -50,10 +45,6 @@ public class Review {
 
     public void setIdReview(int idReview) {
         this.idReview = idReview;
-    }
-
-    public void setDateReview(Date dateReview) {
-        this.dateReview = dateReview;
     }
 
     public void setDescriptionReview(String descriptionReview) {
