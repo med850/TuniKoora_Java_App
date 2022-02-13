@@ -50,7 +50,7 @@ public class UserController {
             ResultSet rs=ste.executeQuery();
             while(rs.next()){
                 Users u = new Users();
-                 u.setId(rs.getInt("idUser"));
+                 u.setId(rs.getInt("id"));
                  u.setCin(rs.getInt("cin"));
             u.setNom(rs.getString("nom"));
             u.setPrenom(rs.getString("prenom"));

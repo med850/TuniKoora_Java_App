@@ -10,15 +10,15 @@ package Models;
  * @author aroua
  */
 public class Users {
-    private int idUser,cin, tel;
+    private int id,cin, tel;
     private String nom,prenom,email,password,repeatpassword,typeuser;
     
 
     public Users() {
     }
 
-    public Users(int idUser, int cin, int tel, String nom, String prenom, String email, String password, String repeatpassword, String typeuser) {
-        this.idUser = idUser;
+    public Users(int id, int cin, int tel, String nom, String prenom, String email, String password, String repeatpassword, String typeuser) {
+        this.id = id;
         this.cin = cin;
         this.tel = tel;
         this.nom = nom;
@@ -31,11 +31,11 @@ public class Users {
 
     @Override
     public String toString() {
-        return "Users{" + "id=" + idUser + ", cin=" + cin + ", tel=" + tel + ", nom=" + nom + ", prenom=" + prenom + ", email=" + email + ", password=" + password + ", repeatpassword=" + repeatpassword + ", typeuser=" + typeuser + '}';
+        return "Users{" + "id=" + id + ", cin=" + cin + ", tel=" + tel + ", nom=" + nom + ", prenom=" + prenom + ", email=" + email + ", password=" + password + ", repeatpassword=" + repeatpassword + ", typeuser=" + typeuser + '}';
     }
 
     public int getId() {
-        return idUser;
+        return id;
     }
 
     public int getCin() {
@@ -70,8 +70,8 @@ public class Users {
         return typeuser;
     }
 
-    public void setId(int idUser) {
-        this.idUser = idUser;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setCin(int cin) {
