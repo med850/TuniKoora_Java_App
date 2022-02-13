@@ -1,10 +1,19 @@
 
 package TestMain;
 
+<<<<<<< HEAD
 import Controllers.ArticleController;
 import Controllers.EquipeController;
 import Controllers.JoueurController;
 import Models.Article;
+=======
+import Controllers.EquipeController;
+import Controllers.JoueurController;
+import Controllers.UserController;
+import Models.Equipe;
+import Models.Joueur;
+import Models.Users;
+>>>>>>> 746f9c65632621befec985cab3eaa553b89c75d7
 import Models.Equipe;
 import Models.Joueur;
 import tools.MaConnexion;
@@ -48,6 +57,7 @@ public class Main {
       
       
       */
+<<<<<<< HEAD
       
       //Article a = new Article(1,"aa","affgggfa",1);
       //ArticleController AC= new ArticleController();
@@ -57,6 +67,23 @@ public class Main {
        
        //AC.updateArticle(a);
        //AC.supprimerArticle();
+=======
+
+         
+       
+       Users u=new Users(1,12345,29630628,"mahdi", "aroua","mahdiaroua@gmailcom","1234","1234","admin");
+       UserController Uc = new UserController();
+        Uc.ajouterUser(u);
+        System.out.println(Uc.afficherUser());
+        
+        Uc.updateUser(u);
+      
+        System.out.println(Uc.supprimerUser());
+        System.out.println(Uc.afficherUser());
+      
+
+      
+>>>>>>> 746f9c65632621befec985cab3eaa553b89c75d7
     }
       
      
