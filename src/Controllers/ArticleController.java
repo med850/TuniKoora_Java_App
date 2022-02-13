@@ -24,7 +24,8 @@ public class ArticleController {
     
     
     public void ajouterArticle(Article e){
-        String sql ="insert into article(titre,description,user_id) Values(?,?,?)";
+            String sql="INSERT INTO article(titre,description,user_id,dateArticle) VALUES(?,?,?,STR_TO_DATE('"+e.getDateArticle()+"','%d-%m-%Y'))";
+        
         try {
             ste=mc.prepareStatement(sql);
             ste.setString(1, e.getTitreArticle());
@@ -37,9 +38,7 @@ public class ArticleController {
         }
         
     }
-    
-    
-    
+   
     public List<Article> afficherArticle(){
         List<Article> article = new ArrayList<>();
         String sql="select * from article ";
@@ -52,6 +51,7 @@ public class ArticleController {
                 a.setTitreArticle(rs.getString("titre"));
                 a.setDescriptionArticle(rs.getString("description"));
                 a.setIdUser(rs.getInt("user_id"));
+                a.setDateArticle(rs.getString("DateArticle"));
                 article.add(a);
             }
         } catch (SQLException ex) {

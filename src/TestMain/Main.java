@@ -109,9 +109,10 @@ public class Main {
 //          Rc.supprimerReview();
 //          System.out.println(Rc.afficherReview());
           
-          Article a= new Article(1,"wass","wasss",1);
+
+          Article a= new Article(1,"wass","wasss",1,"11-11-2000");
           ArticleController Ac = new ArticleController();
-//          Ac.ajouterArticle(a);
+          Ac.ajouterArticle(a);
 //            Ac.updateArticle(a);
 //          Ac.supprimerArticle();
             System.out.println(Ac.afficherArticle());

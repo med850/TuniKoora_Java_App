@@ -1,29 +1,31 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Models;
 
 
-/**
- *
- * @author wassim
- */
 public class Article {
     int idArticle;
     String titreArticle;
     String descriptionArticle;
     int idUser;
+    String dateArticle;
 
     public Article(){};
     
-    public Article(int idArticle, String titreArticle, String descriptionArticle, int idUser) {
+    public Article(int idArticle, String titreArticle, String descriptionArticle, int idUser ,String dateArticle) {
         this.idArticle = idArticle;
         this.titreArticle = titreArticle;
         this.descriptionArticle = descriptionArticle;
         this.idUser = idUser;
+        this.dateArticle= dateArticle;
         
+    }
+
+    public String getDateArticle() {
+        return dateArticle;
+    }
+
+    public void setDateArticle(String dateArticle) {
+        this.dateArticle = dateArticle;
     }
 
    
@@ -62,10 +64,6 @@ public class Article {
 
     @Override
     public String toString() {
-        return "Article{" + "idArticle=" + idArticle + ", titreArticle=" + titreArticle + ", descriptionArticle=" + descriptionArticle + ", idUser=" + idUser + '}';
-    }
-    
-    
-    
-    
+        return "Article{" + "idArticle=" + idArticle + ", titreArticle=" + titreArticle + ", descriptionArticle=" + descriptionArticle + ", idUser=" + idUser + ", dateArticle=" + dateArticle + '}';
+    }    
 }
