@@ -1,8 +1,10 @@
 
 package TestMain;
 
+import Controllers.ArticleController;
 import Controllers.EquipeController;
 import Controllers.JoueurController;
+import Models.Article;
 import Models.Equipe;
 import Models.Joueur;
 import tools.MaConnexion;
@@ -47,7 +49,14 @@ public class Main {
       
       */
       
+      //Article a = new Article(1,"aa","affgggfa",1);
+      //ArticleController AC= new ArticleController();
+      //AC.ajouterArticle(a);
       
+      // System.out.println(AC.afficherArticle());
+       
+       //AC.updateArticle(a);
+       //AC.supprimerArticle();
     }
       
      
