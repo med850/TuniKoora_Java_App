@@ -1,11 +1,25 @@
 
 package TestMain;
 
+<<<<<<< HEAD
+import Controllers.ArticleController;
 import Controllers.EquipeController;
 import Controllers.JoueurController;
+<<<<<<< HEAD
 import Controllers.ProduitController;
 import Controllers.TicketController;
 
+=======
+import Models.Article;
+=======
+import Controllers.EquipeController;
+import Controllers.JoueurController;
+import Controllers.UserController;
+import Models.Equipe;
+import Models.Joueur;
+import Models.Users;
+>>>>>>> 746f9c65632621befec985cab3eaa553b89c75d7
+>>>>>>> 91d329869b7e5f44af49018ee84ecd5422de6bc7
 import Models.Equipe;
 import Models.Joueur;
 import Models.Produit;
@@ -52,6 +66,7 @@ public class Main {
       
       
       */
+<<<<<<< HEAD
 //       Produit p=new Produit(1,"gfgf",50,60, "logo1.png","ess",1);
 //       ProduitController Ec = new ProduitController();
 //        Ec.ajouterProduit(p);
@@ -75,6 +90,35 @@ public class Main {
 //          System.out.println(Ec.supprimerTicket());
 //          System.out.println(Ec.afficherTicket());
 //      
+=======
+<<<<<<< HEAD
+      
+      //Article a = new Article(1,"aa","affgggfa",1);
+      //ArticleController AC= new ArticleController();
+      //AC.ajouterArticle(a);
+      
+      // System.out.println(AC.afficherArticle());
+       
+       //AC.updateArticle(a);
+       //AC.supprimerArticle();
+=======
+
+         
+       
+       Users u=new Users(1,12345,29630628,"mahdi", "aroua","mahdiaroua@gmailcom","1234","1234","admin");
+       UserController Uc = new UserController();
+        Uc.ajouterUser(u);
+        System.out.println(Uc.afficherUser());
+        
+        Uc.updateUser(u);
+      
+        System.out.println(Uc.supprimerUser());
+        System.out.println(Uc.afficherUser());
+      
+
+      
+>>>>>>> 746f9c65632621befec985cab3eaa553b89c75d7
+>>>>>>> 91d329869b7e5f44af49018ee84ecd5422de6bc7
     }
       
      
