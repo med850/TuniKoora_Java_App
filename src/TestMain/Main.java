@@ -4,6 +4,7 @@ package TestMain;
 import Controllers.EquipeController;
 import Controllers.JoueurController;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import Controllers.UserController;
 import Models.Equipe;
 import Models.Joueur;
@@ -16,6 +17,13 @@ import Models.Equipe;
 import Models.Joueur;
 
 
+=======
+import Controllers.MatchController;
+import Models.Match;
+import Models.Participation;
+import Models.Equipe;
+import Models.Joueur;
+>>>>>>> d5325f0fc4f664c65adf893dc8c9fcb41f70458b
 import tools.MaConnexion;
 
 
@@ -28,7 +36,11 @@ public class Main {
        MaConnexion m = MaConnexion.getInstance();
        
        
+<<<<<<< HEAD
        /* //CRUD équipe
+=======
+       /* //CRUD équipe 
+>>>>>>> d5325f0fc4f664c65adf893dc8c9fcb41f70458b
        
        Equipe e=new Equipe(1,"etoile",1, "logo1.png");
        EquipeController Ec = new EquipeController();
@@ -55,6 +67,7 @@ public class Main {
          System.out.println(Jc.supprimerJoueur());
          System.out.println(Jc.afficherJoueur());
       
+<<<<<<< HEAD
       
       */
 <<<<<<< HEAD
@@ -98,6 +111,31 @@ public class Main {
 //          System.out.println(Ec.afficherTicket());
 //      
 >>>>>>> 4d091680a04fa45db9be91de5489ec12b931b3f1
+=======
+      idM ; 
+    public String localisation,arbitrePrincipale,tour  ;
+       m.ajouterMatch(m);
+        System.out.println(m.afficherMatch());
+        m.updateMatch(j);
+         System.out.println(m.afficherJoueur());
+         
+         System.out.println(m.supprimerJoueur());
+         System.out.println(m.afficherJoueur());
+      
+       */
+      
+      /*crud match*/
+     Match n=new Match(1,"stade rades","monji mannai","devision2");
+     MatchController mc= new MatchController();
+     mc.ajouterMatch(n);
+     System.out.println(mc.afficherMatch());
+      //  mc.updateMatch(n);
+        // System.out.println(mc.afficherMatch());
+         
+       /*<  System.out.println(mc.DeleteMatch());
+         System.out.println(mc.afficherMatch());
+     */
+>>>>>>> d5325f0fc4f664c65adf893dc8c9fcb41f70458b
     }
       
      
