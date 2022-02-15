@@ -74,7 +74,7 @@ public class UserController {
     
      public List<Users> updateUser(Users u ){
         List<Users> utilisateur = new ArrayList<>();
-        String sql="UPDATE `users` SET `id`='[value-1]',`cin`='[value-2]',`nom`='[value-3]',`prenom`='[value-4]',`tel`='[value-5]',`email`='[value-6]',`password`='[value-7]',`repeatPassword`='[value-8]',`typeUser`='[value-9]' WHERE 1";
+        String sql="UPDATE users SET cin=?,nom=?,prenom=?,tel=?,email=?,password=?,repeatPassword=?,typeUser=? WHERE id =3";
          try {
             ste=mc.prepareStatement(sql);
             ste.setInt(1, u.getCin());
@@ -97,7 +97,7 @@ public class UserController {
       }
         public List<Users> supprimerUser(){
         List<Users> utilisateur = new ArrayList<>();
-        String sql="DELETE FROM `users` WHERE 0";
+        String sql="DELETE FROM users WHERE id=3";
         try {
             ste=mc.prepareStatement(sql);
             ste.executeUpdate();

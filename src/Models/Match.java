@@ -16,6 +16,11 @@ public class Match {
     public String localisation,arbitrePrincipale,tour  ;
 
     public Match(){}
+    
+    
+    
+    
+    
     public Match(int idM,String localisation,String arbitrePrincipale,String tour){
         this.idM=idM;
         this.localisation=localisation;
