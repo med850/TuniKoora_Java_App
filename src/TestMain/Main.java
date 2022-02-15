@@ -5,6 +5,7 @@ import Controllers.EquipeController;
 import Controllers.JoueurController;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import Controllers.UserController;
 import Models.Equipe;
 import Models.Joueur;
@@ -18,11 +19,16 @@ import Models.Joueur;
 
 
 =======
+=======
+>>>>>>> d5325f0fc4f664c65adf893dc8c9fcb41f70458b
 import Controllers.MatchController;
 import Models.Match;
 import Models.Participation;
 import Models.Equipe;
 import Models.Joueur;
+<<<<<<< HEAD
+>>>>>>> d5325f0fc4f664c65adf893dc8c9fcb41f70458b
+=======
 >>>>>>> d5325f0fc4f664c65adf893dc8c9fcb41f70458b
 import tools.MaConnexion;
 
@@ -37,7 +43,11 @@ public class Main {
        
        
 <<<<<<< HEAD
+<<<<<<< HEAD
        /* //CRUD équipe
+=======
+       /* //CRUD équipe 
+>>>>>>> d5325f0fc4f664c65adf893dc8c9fcb41f70458b
 =======
        /* //CRUD équipe 
 >>>>>>> d5325f0fc4f664c65adf893dc8c9fcb41f70458b
@@ -67,6 +77,7 @@ public class Main {
          System.out.println(Jc.supprimerJoueur());
          System.out.println(Jc.afficherJoueur());
       
+<<<<<<< HEAD
 <<<<<<< HEAD
       
       */
@@ -112,6 +123,8 @@ public class Main {
 //      
 >>>>>>> 4d091680a04fa45db9be91de5489ec12b931b3f1
 =======
+=======
+>>>>>>> d5325f0fc4f664c65adf893dc8c9fcb41f70458b
       idM ; 
     public String localisation,arbitrePrincipale,tour  ;
        m.ajouterMatch(m);
@@ -135,6 +148,9 @@ public class Main {
        /*<  System.out.println(mc.DeleteMatch());
          System.out.println(mc.afficherMatch());
      */
+<<<<<<< HEAD
+>>>>>>> d5325f0fc4f664c65adf893dc8c9fcb41f70458b
+=======
 >>>>>>> d5325f0fc4f664c65adf893dc8c9fcb41f70458b
     }
       

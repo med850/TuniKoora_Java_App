@@ -5,6 +5,7 @@
         <group>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             <file>file:/C:/Users/aroua/Desktop/TuniKoora_Java_App-master/src/Models/Equipe.java</file>
             <file>file:/C:/Users/aroua/Desktop/TuniKoora_Java_App-master/src/tools/MaConnexion.java</file>
             <file>file:/C:/Users/aroua/Desktop/TuniKoora_Java_App-master/src/Models/Users.java</file>
@@ -24,10 +25,15 @@
             <file>file:/D:/Users/mdhah/Documents/NetBeansProjects/TuniKoora/src/Models/Ticket.java</file>
 >>>>>>> 4d091680a04fa45db9be91de5489ec12b931b3f1
 =======
+=======
+>>>>>>> d5325f0fc4f664c65adf893dc8c9fcb41f70458b
             <file>file:/D:/Users/mdhah/Documents/NetBeansProjects/TuniKoora/src/tools/MaConnexion.java</file>
             <file>file:/D:/Users/mdhah/Documents/NetBeansProjects/TuniKoora/src/Models/Equipe.java</file>
             <file>file:/D:/Users/mdhah/Documents/NetBeansProjects/TuniKoora/src/TestMain/Main.java</file>
             <file>file:/D:/Users/mdhah/Documents/NetBeansProjects/TuniKoora/src/Controllers/EquipeController.java</file>
+<<<<<<< HEAD
+>>>>>>> d5325f0fc4f664c65adf893dc8c9fcb41f70458b
+=======
 >>>>>>> d5325f0fc4f664c65adf893dc8c9fcb41f70458b
         </group>
     </open-files>
