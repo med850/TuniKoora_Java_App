@@ -37,7 +37,7 @@ import Models.Produit;
 import Models.Ticket;
 
 
-//
+
 import Controllers.MatchController;
 import Controllers.ParticipationController;
 
@@ -64,22 +64,22 @@ public class Main {
 
         
    
-//       Equipe e=new Equipe(1,"hhg",1, "logo1.png");
+//       Equipe e=new Equipe(1,"rajich",1, "logo2.png");
 //       EquipeController Ec = new EquipeController();
 //        Ec.ajouterEquipe(e);
 //        System.out.println(Ec.afficherEquipe());
-//        
-////        Ec.updateEquipe(e);
-////      
-////        System.out.println(Ec.supprimerEquipe());
-////        System.out.println(Ec.afficherEquipe());
-//             
+        
+//        Ec.updateEquipe(e);
+//      
+//        System.out.println(Ec.supprimerEquipe());
+//        System.out.println(Ec.afficherEquipe());
+             
     
     //
  /*     ***********************************************************************************        */   
        
  //
-      /*     ******************************  CRUD Joueur  ***************************************        */
+      /*******************************  CRUD Joueur  ***************************************        */
       
 // /      Joueur j=new Joueur(1,"user1","test","img1", "milieu",98745632,2);
 //        JoueurController Jc = new JoueurController();

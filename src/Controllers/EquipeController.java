@@ -8,6 +8,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import tools.MaConnexion;
 
 
@@ -38,8 +40,8 @@ public class EquipeController {
     }
     
     
-        public List<Equipe> afficherEquipe(){
-        List<Equipe> equipes = new ArrayList<>();
+        public ObservableList<Equipe> afficherEquipe(){
+        ObservableList<Equipe> equipes = FXCollections.observableArrayList();
         String sql="select * from equipe";
         try {
             ste=mc.prepareStatement(sql);
