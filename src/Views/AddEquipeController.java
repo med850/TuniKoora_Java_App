@@ -33,8 +33,7 @@ public class AddEquipeController implements Initializable {
     private TextField nomEq;
     @FXML
     private TextField classementEq;
-    @FXML
-    private TextField pathImg;
+  
 
     /**
      * Initializes the controller class.
@@ -49,11 +48,11 @@ public class AddEquipeController implements Initializable {
         
         String nom = nomEq.getText();
         int classement = Integer.parseInt(classementEq.getText());
-        String logo = pathImg.getText();
+     
         
         
         
-         if (logo.isEmpty() || nom.isEmpty()){
+         if (nom.isEmpty()){
              Alert alert = new Alert(Alert.AlertType.ERROR);
              alert.setHeaderText(null);
              alert.setContentText("Insérer toutes les informations avant de valider l'insertion");
@@ -62,7 +61,7 @@ public class AddEquipeController implements Initializable {
              
          }else{
              
-             Equipe e=new Equipe(1,nom,classement, logo);
+             Equipe e=new Equipe(1,nom,classement);
              EquipeController ec = new EquipeController();
              ec.ajouterEquipe(e);
             Alert alert = new Alert(AlertType.INFORMATION);
@@ -80,32 +79,13 @@ public class AddEquipeController implements Initializable {
         
          nomEq.setText(null);
         classementEq.setText(null);
-      //  logoEq.setText(null);
-        pathImg.setText(null);
+      
+       
         
         
     }
 
-    @FXML
-    private void saveImg(MouseEvent event) throws FileNotFoundException {
-        
-        String filename;
-        
-        
-       JFileChooser chooser = new JFileChooser();
-       chooser.showOpenDialog(null);
-       File f = chooser.getSelectedFile();
-       filename = f.getAbsolutePath();
-       pathImg.setText(filename);
-//       try{
-//           File image = new  File(filename);
-//           FileInputStream fis = new FileInputStream(image);
-//           byte[] buf = new byte[1024];
-//          
-//           }
-//       }catch(Exception e){
-//           
-       }
+   
 
         
         

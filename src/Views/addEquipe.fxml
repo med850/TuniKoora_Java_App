@@ -57,44 +57,9 @@
          </VBox.margin>
       </HBox>
       <HBox alignment="CENTER" layoutX="10.0" layoutY="114.0">
-         <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Logo" wrappingWidth="119.13671875">
-               <font>
-                  <Font name="Century Gothic" size="21.0" />
-               </font>
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-            </Text>
-            <Button mnemonicParsing="false" onMouseClicked="#saveImg" prefHeight="35.0" prefWidth="230.0" text="Choisir une image">
-               <padding>
-                  <Insets bottom="9.0" left="9.0" right="9.0" top="9.0" />
-               </padding>
-               <HBox.margin>
-                  <Insets bottom="6.0" left="6.0" right="6.0" top="6.0" />
-               </HBox.margin>
-            </Button>
-         </children>
          <VBox.margin>
             <Insets top="17.0" />
          </VBox.margin>
-      </HBox>
-      <HBox prefHeight="47.0" prefWidth="355.0">
-         <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Path" wrappingWidth="114.13671875">
-               <font>
-                  <Font name="Century Gothic" size="21.0" />
-               </font>
-               <HBox.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </HBox.margin>
-            </Text>
-            <TextField fx:id="pathImg" prefHeight="30.0" prefWidth="231.0">
-               <HBox.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </HBox.margin>
-            </TextField>
-         </children>
       </HBox>
       <HBox alignment="CENTER" prefHeight="62.0" prefWidth="384.0">
          <VBox.margin>

@@ -25,12 +25,11 @@ public class EquipeController {
     
     
     public void ajouterEquipe(Equipe e){
-        String sql ="insert into equipe(nom,classement,logo) Values(?,?,?)";
+        String sql ="insert into equipe(nom,classement) Values(?,?)";
         try {
             ste=mc.prepareStatement(sql);
             ste.setString(1, e.getNom());
             ste.setInt(2, e.getClassement());
-            ste.setString(3, e.getLogo());
             ste.executeUpdate();
             System.out.println("Equipe Ajoutée");
         } catch (SQLException ex) {
@@ -51,7 +50,6 @@ public class EquipeController {
                 e.setId(rs.getInt("id"));
                 e.setNom(rs.getString("nom"));
                 e.setClassement(rs.getInt("classement"));
-                e.setLogo(rs.getString("logo"));
                 equipes.add(e);
             }
         } catch (SQLException ex) {
@@ -66,12 +64,11 @@ public class EquipeController {
     
      public List<Equipe> updateEquipe(Equipe e ){
         List<Equipe> equipes = new ArrayList<>();
-        String sql="UPDATE equipe SET nom = ?, classement = ?, logo = ? WHERE id = 15";
+        String sql="UPDATE equipe SET nom = ?, classement = ? WHERE id = 15";
          try {
             ste=mc.prepareStatement(sql);
             ste.setString(1, e.getNom());
             ste.setInt(2, e.getClassement());
-            ste.setString(3, e.getLogo());
             ste.executeUpdate();
             System.out.println("Equipe Modifiée");
         } catch (SQLException ex) {

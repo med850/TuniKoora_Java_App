@@ -5,25 +5,27 @@ package Models;
 public class Equipe {
     
     private int id, classement;
-    private String nom, logo;
+    private String nom;
     
     
     public Equipe(){
         
     }
     
-    public Equipe(int id, String nom,int classement, String logo){
+    public Equipe(int id, String nom,int classement){
         this.id = id;
         this.nom = nom;
         this.classement = classement;
-        this.logo = logo;
+       
                 
     }
 
     @Override
     public String toString() {
-        return "Equipe{" + "id=" + id + ", classement=" + classement + ", nom=" + nom + ", logo=" + logo + '}';
+        return "Equipe{" + "id=" + id + ", classement=" + classement + ", nom=" + nom + '}';
     }
+
+  
 
     public int getId() {
         return id;
@@ -48,18 +50,4 @@ public class Equipe {
     public void setNom(String nom) {
         this.nom = nom;
     }
-
-    public String getLogo() {
-        return logo;
-    }
-
-    public void setLogo(String logo) {
-        this.logo = logo;
-    }
-
-        
-    
-    
-    
-    
 }

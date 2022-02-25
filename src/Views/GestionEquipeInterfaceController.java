@@ -12,6 +12,7 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,6 +30,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import tools.MaConnexion;
 
 /**
  * FXML Controller class
@@ -43,15 +45,16 @@ public class GestionEquipeInterfaceController implements Initializable {
     private TableColumn<Equipe, String> NomEquipe;
     @FXML
     private TableColumn<Equipe, String> ClassementEquipe;
-    @FXML
-    private TableColumn<Equipe, String> LogoEquipel;
 
-    
+     Connection mc;
+    PreparedStatement ste;
  
     @FXML
     private TableView<Equipe> equipeTable;
     
        ObservableList<Equipe>equipeList;
+    @FXML
+    private TableColumn<?, ?> Action;
 //        int index = -1;
 //        Connection cn = null;
 //        ResultSet rs = null;
@@ -62,16 +65,35 @@ public class GestionEquipeInterfaceController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
+        
+           mc=MaConnexion.getInstance().getCnx();
+
         equipeList = FXCollections.observableArrayList();
+        
+        String sql="select * from equipe order by classement ASC";
+        try {
+            ste=mc.prepareStatement(sql);
+            ResultSet rs=ste.executeQuery();
+            while(rs.next()){
+                Equipe e = new Equipe();
+                e.setId(rs.getInt("id"));
+                e.setNom(rs.getString("nom"));
+                e.setClassement(rs.getInt("classement"));
+                equipeList.add(e);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        
+
         
          idEquipe.setCellValueFactory(new PropertyValueFactory<Equipe, Integer>("id"));
         NomEquipe.setCellValueFactory(new PropertyValueFactory<Equipe, String>("nom"));
         ClassementEquipe.setCellValueFactory(new PropertyValueFactory<Equipe, String>("classement"));
-        LogoEquipel.setCellValueFactory(new PropertyValueFactory<Equipe, String>("logo"));
-        
-        
-        EquipeController ec = new EquipeController();
-        ec.afficherEquipe();
+
+
+
+
         
         equipeTable.setItems(equipeList);
 
@@ -98,10 +120,41 @@ public class GestionEquipeInterfaceController implements Initializable {
 
     @FXML
     private void refreshTable(MouseEvent event) {
+        
+         equipeList.clear();
+       
+          
+          mc=MaConnexion.getInstance().getCnx();
+
+        equipeList = FXCollections.observableArrayList();
+        
+        String sql="select * from equipe order by classement ASC";
+        try {
+            ste=mc.prepareStatement(sql);
+            ResultSet rs=ste.executeQuery();
+            while(rs.next()){
+                Equipe e = new Equipe();
+                e.setId(rs.getInt("id"));
+                e.setNom(rs.getString("nom"));
+                e.setClassement(rs.getInt("classement"));
+                equipeList.add(e);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+         equipeTable.setItems(equipeList);
     }
 
     @FXML
     private void print(MouseEvent event) {
+    }
+
+    @FXML
+    private void updateEquipe(MouseEvent event) {
+    }
+
+    @FXML
+    private void deleteEquipe(MouseEvent event) {
     }
     
 }
