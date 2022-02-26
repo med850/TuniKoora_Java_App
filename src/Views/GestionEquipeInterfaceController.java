@@ -23,6 +23,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -30,6 +31,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javax.swing.JOptionPane;
 import tools.MaConnexion;
 
 /**
@@ -48,13 +50,24 @@ public class GestionEquipeInterfaceController implements Initializable {
 
      Connection mc;
     PreparedStatement ste;
+    int index = -1;
  
     @FXML
     private TableView<Equipe> equipeTable;
     
        ObservableList<Equipe>equipeList;
+       
+       
+        ObservableList<Equipe>listEquipeForSearch;
+
     @FXML
-    private TableColumn<?, ?> Action;
+    private TextField nomEq;
+    @FXML
+    private TextField classementEq;
+    @FXML
+    private TextField idEq;
+    @FXML
+    private TextField search;
 //        int index = -1;
 //        Connection cn = null;
 //        ResultSet rs = null;
@@ -105,21 +118,92 @@ public class GestionEquipeInterfaceController implements Initializable {
     @FXML
     private void addEquipe(MouseEvent event) throws IOException {
         
-    
-            Parent parent = FXMLLoader.load(getClass().getResource("addEquipe.fxml"));
-            Scene scene = new Scene(parent);
-            Stage stage = new Stage();
-            stage.setScene(scene);
-
-           // stage.initStyle(StageStyle.UTILITY);
-            stage.show();
-       
+         String nom = nomEq.getText();
+        int classement = Integer.parseInt(classementEq.getText());
+           
+        
+        
+         if (nom.isEmpty()){
+             Alert alert = new Alert(Alert.AlertType.ERROR);
+             alert.setHeaderText("ERROR");
+             alert.setContentText("Insérer toutes les informations avant de valider l'insertion");
+             alert.showAndWait();
+               
+             
+         }else{
+             
+             Equipe e=new Equipe(1,nom,classement);
+             EquipeController ec = new EquipeController();
+             ec.ajouterEquipe(e);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+             alert.setHeaderText("Succes");
+             alert.setContentText("Equipe Ajoutée!");
+                alert.showAndWait();             
+        
+        
+         }
+         
+          refresh();
         
     }
     
 
+
+
     @FXML
-    private void refreshTable(MouseEvent event) {
+    private void print(MouseEvent event) {
+    }
+
+    @FXML
+    private void updateEquipe(MouseEvent event) {
+        
+        Equipe clickedEquipe = equipeTable.getSelectionModel().getSelectedItem();
+        
+        
+        try{
+             mc=MaConnexion.getInstance().getCnx();
+              String value1 = idEq.getText();
+             String value2 = nomEq.getText();
+             String value3 = classementEq.getText();
+             
+             String sql = "update equipe set id = '"+value1+"', nom = '"+value2+"', classement='"+value3+"' where id ='"+value1+"'";
+             ste=mc.prepareStatement(sql);
+             ste.execute();
+            JOptionPane.showMessageDialog(null, "Equipe modifié");
+        }catch(Exception e){
+               JOptionPane.showMessageDialog(null,e);
+
+        }
+        
+        
+        refresh();
+    }
+
+    @FXML
+    private void deleteEquipe(MouseEvent event) throws SQLException {
+         mc=MaConnexion.getInstance().getCnx();
+         String sql = "delete from equipe where id = ?";
+            ste=mc.prepareStatement(sql);
+            ste.setString(1, idEq.getText());
+            ste.execute();
+            JOptionPane.showMessageDialog(null, "Equipe supprimé" );
+        
+            refresh();
+        
+    }
+
+    @FXML
+    private void getSelected(MouseEvent event) {
+        
+        Equipe clickedEquipe = equipeTable.getSelectionModel().getSelectedItem();
+         idEq.setText(String.valueOf(clickedEquipe.getId()));
+        nomEq.setText(String.valueOf(clickedEquipe.getNom()));
+        classementEq.setText(String.valueOf(clickedEquipe.getClassement()));
+     
+    }
+    
+    
+    public void refresh(){
         
          equipeList.clear();
        
@@ -143,18 +227,34 @@ public class GestionEquipeInterfaceController implements Initializable {
             System.out.println(ex.getMessage());
         }
          equipeTable.setItems(equipeList);
+        
+        
+        
     }
 
     @FXML
-    private void print(MouseEvent event) {
+    private void refreshChamp(MouseEvent event) {
+        
+        
+          idEq.setText(null);
+          nomEq.setText(null);
+        classementEq.setText(null);
+        
     }
 
     @FXML
-    private void updateEquipe(MouseEvent event) {
+    private void rechercheEq(MouseEvent event) {
+        
+//        
+//         idEquipe.setCellValueFactory(new PropertyValueFactory<Equipe, Integer>("id"));
+//        NomEquipe.setCellValueFactory(new PropertyValueFactory<Equipe, String>("nom"));
+//        ClassementEquipe.setCellValueFactory(new PropertyValueFactory<Equipe, String>("classement"));
+//        
+        
+        
+        
     }
-
-    @FXML
-    private void deleteEquipe(MouseEvent event) {
-    }
+    
+    
     
 }
