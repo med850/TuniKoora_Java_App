@@ -25,12 +25,21 @@ public class NewFXMain extends Application {
     
     @Override
     public void start(Stage primaryStage) throws IOException {
-        
-       Parent parent = FXMLLoader.load(getClass().getResource("gestionEquipeInterface.fxml"));
-       Scene scene = new Scene(parent);
+//        
+//       Parent parent = FXMLLoader.load(getClass().getResource("gestionEquipeInterface.fxml"));
+//       Scene scene = new Scene(parent);
+
+//
+        Parent parent = FXMLLoader.load(getClass().getResource("gestionJoueurInterface.fxml"));
+         Scene scene = new Scene(parent);
+
+
+
       // scene.getStylesheets().add(getClass().getResource("ControlPanel.css").toExternalForm());
       // primaryStage.initStyle(StageStyle.UTILITY);
-        primaryStage.setTitle("Gestion des équipes");
+//        primaryStage.setTitle("Gestion des équipes");
+
+        primaryStage.setTitle("Gestion des joueurs");
         primaryStage.setScene(scene);
         primaryStage.show();
     }

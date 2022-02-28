@@ -25,15 +25,14 @@ public class JoueurController {
     
     //Ajouter in joueur
     public void ajouterJoueur(Joueur j){
-        String sql ="insert into joueur(nom,prenom,image,poste,tel,equipe_id) Values(?,?,?,?,?,?)";
+        String sql ="insert into joueur(nom,prenom,poste,tel,equipe_id) Values(?,?,?,?,?)";
         try {
             ste=mc.prepareStatement(sql);
             ste.setString(1, j.getNom());
             ste.setString(2, j.getPrenom());
-            ste.setString(3, j.getImage());
-            ste.setString(4, j.getPoste());
-            ste.setInt(5, j.getTel());
-            ste.setInt(6, j.getEquipe_id());
+            ste.setString(3, j.getPoste());
+            ste.setInt(4, j.getTel());
+            ste.setInt(5, j.getEquipe_id());
             ste.executeUpdate();
             System.out.println("Joueur Ajoutée");
         } catch (SQLException ex) {
@@ -56,7 +55,6 @@ public class JoueurController {
                 j.setId(rs.getInt("id"));
                 j.setNom(rs.getString("nom"));
                 j.setPrenom(rs.getString("prenom"));
-                j.setImage(rs.getString("image"));
                 j.setPoste(rs.getString("poste"));
                 j.setTel(rs.getInt("tel"));
                 j.setEquipe_id(rs.getInt("equipe_id"));
@@ -74,12 +72,11 @@ public class JoueurController {
     
      public List<Joueur> updateJoueur(Joueur j ){
         List<Joueur> joueurs = new ArrayList<>();
-        String sql="UPDATE joueur SET nom = ?, prenom = ?, image = ?, poste = ?, tel = ?, equipe_id = ? WHERE id = 2";
+        String sql="UPDATE joueur SET nom = ?, prenom = ?, poste = ?, tel = ?, equipe_id = ? WHERE id = 2";
          try {
             ste=mc.prepareStatement(sql);
             ste.setString(1, j.getNom());
             ste.setString(2, j.getPrenom());
-            ste.setString(3, j.getImage());
             ste.setString(4, j.getPoste());
             ste.setInt(5, j.getTel());
             ste.setInt(6, j.getEquipe_id());

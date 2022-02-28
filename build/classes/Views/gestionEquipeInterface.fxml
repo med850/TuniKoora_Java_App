@@ -69,7 +69,7 @@
             </Button>
          </children>
       </HBox>
-      <HBox layoutX="14.0" layoutY="216.0" prefHeight="36.0" prefWidth="282.0">
+      <HBox layoutX="14.0" layoutY="198.0" prefHeight="36.0" prefWidth="282.0">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nom" wrappingWidth="120.13671875">
                <font>
@@ -79,7 +79,7 @@
             <TextField fx:id="nomEq" prefHeight="36.0" prefWidth="166.0" />
          </children>
       </HBox>
-      <HBox layoutX="14.0" layoutY="271.0" prefHeight="46.0" prefWidth="282.0">
+      <HBox layoutX="14.0" layoutY="254.0" prefHeight="46.0" prefWidth="282.0">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="classement" wrappingWidth="120.13671875">
                <font>
@@ -89,7 +89,7 @@
             <TextField fx:id="classementEq" prefHeight="37.0" prefWidth="160.0" />
          </children>
       </HBox>
-      <HBox layoutX="14.0" layoutY="149.0" prefHeight="43.0" prefWidth="282.0">
+      <HBox layoutX="17.0" layoutY="149.0" prefHeight="43.0" prefWidth="282.0">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ID" wrappingWidth="119.37451171875">
                <font>
@@ -109,7 +109,7 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </HBox.margin>
             </Text>
-            <TextField fx:id="search" onMouseClicked="#rechercheEq" prefHeight="29.0" prefWidth="215.0">
+            <TextField fx:id="search" prefHeight="29.0" prefWidth="215.0">
                <HBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </HBox.margin>

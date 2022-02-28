@@ -102,5 +102,41 @@ public class EquipeController {
     ////////////////
     
     
+     
+     
+          public int getEquipeId(String NomEquipe){
+            
+            int equipeId = 0;
+            
+               mc=MaConnexion.getInstance().getCnx();
+
+      
+        
+        String sql="select * from equipe where nom = ?";
+        try {
+            ste=mc.prepareStatement(sql);
+            ste.setString(1, NomEquipe);
+            ResultSet rs=ste.executeQuery();
+            while(rs.next()){
+               
+               equipeId = rs.getInt("id");
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+            
+             
+        
+              
+              
+              
+              return equipeId;
+              
+              
+        }       
+              
+              
+     
+     
     
 }

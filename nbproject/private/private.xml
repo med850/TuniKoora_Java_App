@@ -3,10 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Users/mdhah/Documents/NetBeansProjects/TuniKoora/src/TestMain/Main.java</file>
+            <file>file:/D:/Users/mdhah/Documents/NetBeansProjects/TuniKoora/src/Controllers/JoueurController.java</file>
+            <file>file:/D:/Users/mdhah/Documents/NetBeansProjects/TuniKoora/src/Models/Equipe.java</file>
             <file>file:/D:/Users/mdhah/Documents/NetBeansProjects/TuniKoora/src/Views/NewFXMain.java</file>
+            <file>file:/D:/Users/mdhah/Documents/NetBeansProjects/TuniKoora/src/Models/Joueur.java</file>
+            <file>file:/D:/Users/mdhah/Documents/NetBeansProjects/TuniKoora/src/Views/GestionJoueurInterfaceController.java</file>
             <file>file:/D:/Users/mdhah/Documents/NetBeansProjects/TuniKoora/src/Views/GestionEquipeInterfaceController.java</file>
-            <file>file:/D:/Users/mdhah/Documents/NetBeansProjects/TuniKoora/src/Views/AddEquipeController.java</file>
+            <file>file:/D:/Users/mdhah/Documents/NetBeansProjects/TuniKoora/src/Controllers/EquipeController.java</file>
         </group>
     </open-files>
 </project-private>

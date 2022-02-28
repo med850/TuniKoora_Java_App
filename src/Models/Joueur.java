@@ -5,7 +5,7 @@ package Models;
 public class Joueur {
 
        private int id, tel, equipe_id;
-       private String nom, prenom, image, poste;
+       private String nom, prenom, poste;
 
 
      public Joueur(){
@@ -13,25 +13,21 @@ public class Joueur {
     }
 
 
-      public Joueur(int id, String nom,String prenom, String image, String poste, int tel, int equipe_id){
+      public Joueur(int id, String nom,String prenom, String poste, int tel, int equipe_id){
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
-        this.image = image;
         this.poste = poste;
         this.tel = tel;
         this.equipe_id = equipe_id;
+        
        
     }
 
     @Override
     public String toString() {
-        return "Joueur{" + "id=" + id + ", tel=" + tel + ", equipe_id=" + equipe_id + ", nom=" + nom + ", prenom=" + prenom + ", image=" + image + ", poste=" + poste + '}';
+        return "Joueur{" + "id=" + id + ", tel=" + tel + ", equipe_id=" + equipe_id + ", nom=" + nom + ", prenom=" + prenom + ", poste=" + poste + '}';
     }
-      
-      
-      
-      
 
     public int getId() {
         return id;
@@ -73,14 +69,6 @@ public class Joueur {
         this.prenom = prenom;
     }
 
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
     public String getPoste() {
         return poste;
     }
@@ -88,7 +76,6 @@ public class Joueur {
     public void setPoste(String poste) {
         this.poste = poste;
     }
-      
       
       
       
