@@ -5,6 +5,7 @@
  */
 package Views;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,6 +17,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField;
@@ -58,7 +60,7 @@ public class AuthentificationUtilisateurController implements Initializable {
         stage.close();
         
     }
-    public void loginButtonOnAction(ActionEvent e){
+    public void loginButtonOnAction(ActionEvent e) throws IOException{
         if (usernameTextField.getText().isEmpty() == false && passwordTextField.getText().isEmpty() == false){
                     //loginLabel.setText("Essayer de connecter");
      validateLogin();
@@ -66,6 +68,31 @@ public class AuthentificationUtilisateurController implements Initializable {
                     loginLabel.setText("SVP enter les données");
 
         }
+        Stage primaryStage = new Stage();
+         Parent parent = FXMLLoader.load(getClass().getResource("Home.fxml"));
+         Scene scene = new Scene(parent);
+
+        
+//        
+//       Parent parent = FXMLLoader.load(getClass().getResource("gestionEquipeInterface.fxml"));
+//       Scene scene = new Scene(parent);
+
+////
+//        Parent parent = FXMLLoader.load(getClass().getResource("gestionJoueurInterface.fxml"));
+//         Scene scene = new Scene(parent);
+
+
+
+      // scene.getStylesheets().add(getClass().getResource("ControlPanel.css").toExternalForm());
+      // primaryStage.initStyle(StageStyle.UTILITY);
+//        primaryStage.setTitle("Gestion des équipes");
+
+        primaryStage.setTitle("Dashbord");
+        primaryStage.setScene(scene);
+        primaryStage.show();
+        
+        
+        
     }
         public void validateLogin(){
             mc=MaConnexion.getInstance().getCnx();
