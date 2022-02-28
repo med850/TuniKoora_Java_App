@@ -7,55 +7,45 @@ public class Article {
     String titreArticle;
     String descriptionArticle;
     int idUser;
-    String dateArticle;
+ 
 
     public Article(){};
     
-    public Article(int idArticle, String titreArticle, String descriptionArticle, int idUser ,String dateArticle) {
+    public Article(int idArticle, String titreArticle, String descriptionArticle, int idUser ) {
         this.idArticle = idArticle;
         this.titreArticle = titreArticle;
         this.descriptionArticle = descriptionArticle;
         this.idUser = idUser;
-        this.dateArticle= dateArticle;
+       
         
     }
 
-    public String getDateArticle() {
-        return dateArticle;
-    }
-
-    public void setDateArticle(String dateArticle) {
-        this.dateArticle = dateArticle;
-    }
-
-   
     public int getIdArticle() {
         return idArticle;
-    }
-
-    public String getTitreArticle() {
-        return titreArticle;
-    }
-
-    public String getDescriptionArticle() {
-        return descriptionArticle;
-    }
-    
-
-    public int getIdUser() {
-        return idUser;
     }
 
     public void setIdArticle(int idArticle) {
         this.idArticle = idArticle;
     }
 
+    public String getTitreArticle() {
+        return titreArticle;
+    }
+
     public void setTitreArticle(String titreArticle) {
         this.titreArticle = titreArticle;
     }
 
+    public String getDescriptionArticle() {
+        return descriptionArticle;
+    }
+
     public void setDescriptionArticle(String descriptionArticle) {
         this.descriptionArticle = descriptionArticle;
+    }
+
+    public int getIdUser() {
+        return idUser;
     }
 
     public void setIdUser(int idUser) {
@@ -64,6 +54,12 @@ public class Article {
 
     @Override
     public String toString() {
-        return "Article{" + "idArticle=" + idArticle + ", titreArticle=" + titreArticle + ", descriptionArticle=" + descriptionArticle + ", idUser=" + idUser + ", dateArticle=" + dateArticle + '}';
-    }    
+        return "Article{" + "idArticle=" + idArticle + ", titreArticle=" + titreArticle + ", descriptionArticle=" + descriptionArticle + ", idUser=" + idUser + '}';
+    }
+    
+    
+    
+    
+    
+
 }
