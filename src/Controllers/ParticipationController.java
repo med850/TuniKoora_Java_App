@@ -5,6 +5,7 @@
  */
 package Controllers;
 
+import java.util.List;
 import Models.Article;
 import Models.Participation;
 import java.sql.Connection;
@@ -14,7 +15,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import tools.MaConnexion;
-
 /**
  *
  * @author mdhah
@@ -22,19 +22,18 @@ import tools.MaConnexion;
 public class ParticipationController {
     
     
-     Connection mc;
+    
+         Connection mc;
     PreparedStatement ste;
-    
-    
+
       public ParticipationController() {
         mc=MaConnexion.getInstance().getCnx();
     }
-    
-    
-    
+
+
       public void ajouterParticipation(Participation p){
             String sql="INSERT INTO participation(match_id,equipe_id,date) VALUES(?,?,STR_TO_DATE('"+p.getDateP()+"','%d-%m-%Y'))";
-        
+
         try {
             ste=mc.prepareStatement(sql);
             ste.setInt(1, p.getMatch_id());
@@ -44,12 +43,8 @@ public class ParticipationController {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-        
+
     }
-      
-      
-      
-      
    public List<Participation> afficherParticipation(){
         List<Participation> participations = new ArrayList<>();
         String sql="select * from participation INNER JOIN equipe ON participation.equipe_id = equipe.id ";
@@ -67,12 +62,10 @@ public class ParticipationController {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-        
+
         return participations;
-    }    
-       
-    
-   public List<Participation> updateParticipation(Participation p ){
+    }
+public List<Participation> updateParticipation(Participation p ){
         List<Participation> participations = new ArrayList<>();
         String sql="UPDATE participation SET match_id = ?, equipe_id = ? WHERE id = 1";
          try {
@@ -84,13 +77,10 @@ public class ParticipationController {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-        
+
         return participations;
-        
-        
+
       }
-        
-        
      public List<Participation> supprimerParticipation(){
         List<Participation> participations = new ArrayList<>();
         String sql="DELETE FROM participation WHERE id=1";
@@ -101,14 +91,8 @@ public class ParticipationController {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-        
+
         return participations;
-    } 
-   
-   
-   
-   
-   
-   
-    
+    }
 }
+

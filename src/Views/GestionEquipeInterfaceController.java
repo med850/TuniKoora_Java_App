@@ -9,9 +9,15 @@ import Controllers.EquipeController;
 import Models.Equipe;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+import java.awt.Desktop;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -22,6 +28,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,12 +36,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -44,6 +53,9 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import tools.MaConnexion;
 
 /**
@@ -134,8 +146,11 @@ public class GestionEquipeInterfaceController implements Initializable {
     }    
 
     @FXML
-    private void addEquipe(MouseEvent event) throws IOException {
+    private void addEquipe(MouseEvent event) throws IOException, SQLException {
         
+        Equipe e1= new Equipe();
+        
+        EquipeController eq2 = new EquipeController();
          String nom = nomEq.getText();
         int classement = Integer.parseInt(classementEq.getText());
            
@@ -147,7 +162,14 @@ public class GestionEquipeInterfaceController implements Initializable {
              alert.setContentText("Insérer toutes les informations avant de valider l'insertion");
              alert.showAndWait();
                
-             
+//         } else if (eq2.checkLivraison(e1)==true){
+//              Alert alert = new Alert(Alert.AlertType.ERROR);
+//             alert.setHeaderText("ERROR");
+//             alert.setContentText("Element existant");
+//             alert.showAndWait();
+
+
+           
          }else{
              
              Equipe e=new Equipe(1,nom,classement);
@@ -174,7 +196,82 @@ public class GestionEquipeInterfaceController implements Initializable {
 
 
     @FXML
-    private void print(MouseEvent event) throws FileNotFoundException, DocumentException, SQLException {
+    private void print(MouseEvent event) throws FileNotFoundException, DocumentException, SQLException, IOException {
+        
+        
+        
+           String sql = "SELECT * from equipe";
+    ste=mc.prepareStatement(sql);
+    ResultSet rs=ste.executeQuery();
+
+    Document doc = new Document();
+    PdfWriter.getInstance(doc, new FileOutputStream("./ListeDesEquipes.pdf"));
+
+    doc.open();
+    //Image image = Image.getInstance("C:\\Users\\drwhoo\\Desktop\\Projet3eme\\JavaApplication\\src\\HolidaysHiatus\\images\\logo.png");
+
+    //document.add(new Paragraph("test\n  test"));
+   // doc.add(image);
+    doc.add(new Paragraph("   "));
+    doc.add(new Paragraph(" ***************************************** Liste Des Equipes ***************************************** "));
+    doc.add(new Paragraph("   "));
+
+    PdfPTable table = new PdfPTable(1);
+    table.setWidthPercentage(50);
+    PdfPCell cell;
+
+    cell = new PdfPCell(new Phrase("Nom des équipes", FontFactory.getFont("Comic Sans MS", 14)));
+    cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+
+    table.addCell(cell);
+
+//    cell = new PdfPCell(new Phrase("Classement", FontFactory.getFont("Comic Sans MS", 15)));
+//    cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+//
+//    table.addCell(cell);
+
+    while (rs.next()) {
+
+        Equipe e = new Equipe();
+      //  e.setId(rs.getInt("id"));
+        e.setNom(rs.getString("nom"));
+       // e.setClassement(rs.getInt("classement"));
+       
+      
+        cell = new PdfPCell(new Phrase(e.getNom(), FontFactory.getFont("Comic Sans MS", 12)));
+        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+
+        table.addCell(cell);
+        
+        
+//        cell = new PdfPCell(new Phrase(e.getClassement()));
+//        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+//
+//        table.addCell(cell);
+        
+        
+        //Image image1 = Image.getInstance("C:\\Users\\drwhoo\\Desktop\\Projet3eme\\SymfonyApplication\\public\\uploads\\" + c.getLien_icon());
+        //PdfPCell cell1 = new PdfPCell(image1, true);
+
+      //  table.addCell(cell1);
+
+    }
+
+    doc.add(table);
+    doc.close();
+    Desktop.getDesktop().open(new File("./ListeDesEquipes.pdf"));
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -198,27 +295,27 @@ public class GestionEquipeInterfaceController implements Initializable {
         
         
         
-        
-        Equipe equipe = new Equipe();
-        
-        
-        
-        String path = "";
-        JFileChooser j  = new JFileChooser();
-        j.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-        int x = j.showSaveDialog(null);
-        
-          if(x ==JFileChooser.APPROVE_OPTION){
-              
-              path = j.getSelectedFile().getPath();
-              
-          }
-          
-          Document doc = new Document();
-
-
-           
-            doc.close();
+//        
+//        Equipe equipe = new Equipe();
+//        
+//        
+//        
+//        String path = "";
+//        JFileChooser j  = new JFileChooser();
+//        j.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+//        int x = j.showSaveDialog(null);
+//        
+//          if(x ==JFileChooser.APPROVE_OPTION){
+//              
+//              path = j.getSelectedFile().getPath();
+//              
+//          }
+//          
+//          Document doc = new Document();
+//
+//
+//           
+//            doc.close();
 
 //          
 //          PdfWriter.getInstance(doc, new FileOutputStream(path+"listeEquipe.pdf"));
@@ -254,9 +351,18 @@ public class GestionEquipeInterfaceController implements Initializable {
     @FXML
     private void updateEquipe(MouseEvent event) {
         
+        
         Equipe clickedEquipe = equipeTable.getSelectionModel().getSelectedItem();
         
+         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setHeaderText("Warning");
+            alert.setContentText("Confirmation..!");
+                 
         
+        
+        Optional<ButtonType>result =  alert.showAndWait(); 
+        if(result.get() == ButtonType.OK){
+                
         try{
              mc=MaConnexion.getInstance().getCnx();
               String value1 = idEq.getText();
@@ -271,6 +377,14 @@ public class GestionEquipeInterfaceController implements Initializable {
                JOptionPane.showMessageDialog(null,e);
 
         }
+        }else{
+            
+             idEq.setText(null);
+          nomEq.setText(null);
+        classementEq.setText(null);
+        
+            
+        }
         
         
         refresh();
@@ -278,7 +392,21 @@ public class GestionEquipeInterfaceController implements Initializable {
 
     @FXML
     private void deleteEquipe(MouseEvent event) throws SQLException {
-         mc=MaConnexion.getInstance().getCnx();
+        
+        
+          Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setHeaderText("Warning");
+            alert.setContentText("Confirmation..!");
+                 
+        
+        
+        Optional<ButtonType>result =  alert.showAndWait(); 
+        if(result.get() == ButtonType.OK){
+        
+        
+        
+        
+        mc=MaConnexion.getInstance().getCnx();
          String sql = "delete from equipe where id = ?";
             ste=mc.prepareStatement(sql);
             ste.setString(1, idEq.getText());
@@ -286,6 +414,16 @@ public class GestionEquipeInterfaceController implements Initializable {
             JOptionPane.showMessageDialog(null, "Equipe supprimé" );
         
             refresh();
+            
+        }else{
+            
+            
+             idEq.setText(null);
+          nomEq.setText(null);
+        classementEq.setText(null);
+        
+            
+        }
         
     }
 
@@ -386,6 +524,8 @@ public class GestionEquipeInterfaceController implements Initializable {
         
         
     }
+
+   
     
     
         

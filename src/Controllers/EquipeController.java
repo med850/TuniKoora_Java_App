@@ -137,6 +137,22 @@ public class EquipeController {
               
               
      
+          public boolean checkLivraison(Equipe e) throws SQLException {
+        int count = 0;
+        String sql=("SELECT Count(*) from equipe WHERE id='"
+                    + e.getId() + "'");
+        ste=mc.prepareStatement(sql);
+            ResultSet rs=ste.executeQuery();
+        if (rs.next())
+            count = rs.getInt(1);
+        if (count == 0)
+            return false;
+        else
+            return true;
+}
+          
+          
+          
      
     
 }

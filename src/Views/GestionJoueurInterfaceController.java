@@ -15,12 +15,16 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
@@ -134,10 +138,6 @@ public class GestionJoueurInterfaceController implements Initializable {
 
 
 
-
-
-
-
        public void loadDataIntoChoiBox(){
         
            ObservableList<String> list = FXCollections.observableArrayList();
@@ -190,11 +190,16 @@ public class GestionJoueurInterfaceController implements Initializable {
 
     @FXML
     private void refreshChamp(MouseEvent event) {
+        
+          idJ.setText(null);
+          nomJ.setText(null);
+          prenomJ.setText(null);
+          posteJ.setText(null);
+          telJ.setText(null);
+        
+        
     }
 
-    @FXML
-    private void print(MouseEvent event) {
-    }
 
     @FXML
     private void addJ(MouseEvent event) {
@@ -240,36 +245,89 @@ public class GestionJoueurInterfaceController implements Initializable {
           prenomJ.setText(null);
           posteJ.setText(null);
           telJ.setText(null);
+          
+          
+          
          
         
     }
 
     @FXML
-    private void updateJoueur(MouseEvent event) {
+    private void updateJoueur(MouseEvent event) throws SQLException {
         
       // int equipe_id = Integer.valueOf(eq1.getEquipeId(comboBox.getSelectionModel().getSelectedItem().toString()));
 
+      
+      
+      
+      
           Joueur clickedJoueur = JoueurTable.getSelectionModel().getSelectedItem();
         
         
-        try{
-             mc=MaConnexion.getInstance().getCnx();
-              String value1 = idJ.getText();
-             String value2 = nomJ.getText();
-             String value3 = prenomJ.getText();
-             String value4 = posteJ.getText();
-             String value5 = telJ.getText();
-           //  String value6 = eq1.getEquipeId(comboBox.getSelectionModel().getSelectedItem().toString());
-             
-          //   String sql = "update joueur set id = '"+value1+"', nom = '"+value2+"', prenom='"+value3+"' , poste='"+value4+"', tel='"+value5+"', equipe_id='"+value6+"'  where id ='"+value1+"'";
-           //  ste=mc.prepareStatement(sql);
-             ste.execute();
-            JOptionPane.showMessageDialog(null, "Equipe modifié");
-        }catch(Exception e){
-               JOptionPane.showMessageDialog(null,e);
-
-        }
+          
+            mc=MaConnexion.getInstance().getCnx();
+         String sql = "delete from joueur where id = ?";
+            ste=mc.prepareStatement(sql);
+            ste.setString(1, idJ.getText());
+            ste.execute();
+           // JOptionPane.showMessageDialog(null, "Joueur supprimé" );
         
+          
+            
+            String nom = nomJ.getText();
+           String prenom = prenomJ.getText();
+           String poste = posteJ.getText();
+           int tel = Integer.parseInt(telJ.getText());
+            int equipe_id = Integer.valueOf(eq1.getEquipeId(comboBox.getSelectionModel().getSelectedItem().toString()));
+            
+          //  System.out.println(equipe_id);
+
+
+
+          if (nom.isEmpty() || prenom.isEmpty() || poste.isEmpty()){
+              
+               Alert alert = new Alert(Alert.AlertType.ERROR);
+             alert.setHeaderText("ERROR");
+             alert.setContentText("Insérer toutes les informations avant de valider la modification");
+             alert.showAndWait();
+              
+              
+          }
+          else {
+              
+               Joueur j=new Joueur(2,nom,prenom,poste,tel,equipe_id);
+             JoueurController ec = new JoueurController();
+             ec.ajouterJoueur(j);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+             alert.setHeaderText("Succes");
+             alert.setContentText("Joueur Modifié!");
+                alert.showAndWait();   
+              
+          }
+        
+          
+            
+            
+            
+            
+//        try{
+//             mc=MaConnexion.getInstance().getCnx();
+//              String value1 = idJ.getText();
+//             String value2 = nomJ.getText();
+//             String value3 = prenomJ.getText();
+//             String value4 = posteJ.getText();
+//             String value5 = telJ.getText();
+//           //  String value6 = eq1.getEquipeId(comboBox.getSelectionModel().getSelectedItem().toString());
+//             
+//          //   String sql = "update joueur set id = '"+value1+"', nom = '"+value2+"', prenom='"+value3+"' , poste='"+value4+"', tel='"+value5+"', equipe_id='"+value6+"'  where id ='"+value1+"'";
+//           //  ste=mc.prepareStatement(sql);
+//             ste.execute();
+//            JOptionPane.showMessageDialog(null, "Equipe modifié");
+//        }catch(Exception e){
+//               JOptionPane.showMessageDialog(null,e);
+//
+//        }
+//        
         
         refresh();
         
@@ -278,6 +336,20 @@ public class GestionJoueurInterfaceController implements Initializable {
 
     @FXML
     private void deleteJoueur(MouseEvent event) throws SQLException {
+        
+        
+        
+         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setHeaderText("Warning");
+            alert.setContentText("Confirmation..!");
+                 
+        
+        
+        Optional<ButtonType>result =  alert.showAndWait(); 
+        if(result.get() == ButtonType.OK){
+        
+        
+        
         
            mc=MaConnexion.getInstance().getCnx();
          String sql = "delete from joueur where id = ?";
@@ -289,19 +361,20 @@ public class GestionJoueurInterfaceController implements Initializable {
             refresh();
         
         
-        
+        }
+        else{
+            
+              idJ.setText(null);
+          nomJ.setText(null);
+          prenomJ.setText(null);
+          posteJ.setText(null);
+          telJ.setText(null);
+          
+        }
         
         
     }
 
-    @FXML
-    private void rechercheEq(MouseEvent event) {
-    }
-    
-    
-    
-    
-    
     
     
       public void refresh(){
@@ -330,6 +403,57 @@ public class GestionJoueurInterfaceController implements Initializable {
             System.out.println(ex.getMessage());
         }
          JoueurTable.setItems(joueurList);
+        
+       // loadDataIntoChoiBox();
+        
+    }
+
+    @FXML
+    private void rechercheJr(MouseEvent event) {
+        
+          FilteredList<Joueur>filteredData = new FilteredList<>(joueurList, b->true);
+        
+     //   Equipe equipe = new Equipe();
+        search.textProperty().addListener((observable, oldValue, newValue)->{
+            
+            filteredData.setPredicate(joueur->{
+                
+                if(newValue == null || newValue.isEmpty()){
+                    return true;
+                }
+                
+                String lowerCaseFilter = newValue.toLowerCase();
+                
+                if(joueur.getNom().toLowerCase().indexOf(lowerCaseFilter) != -1){
+                    return true;
+                    
+                    }else if(String.valueOf(joueur.getTel()).indexOf(lowerCaseFilter) != -1){
+                    return true;
+                }
+                    
+                    
+                    
+                    
+                    else{
+                return false;
+                }
+                
+                
+            }); 
+            
+            
+            
+            
+        });
+        
+        SortedList<Joueur>sortedData = new SortedList<>(filteredData);
+        
+        sortedData.comparatorProperty().bind(JoueurTable.comparatorProperty());
+        
+        JoueurTable.setItems(sortedData);
+        
+      
+        
         
         
         

@@ -29,19 +29,24 @@ public class NewFXMain extends Application {
         
         
         
-        Parent parent = FXMLLoader.load(getClass().getResource("AuthentificationUtilisateur.fxml"));
-         Scene scene = new Scene(parent);
-
-        
-//        
-//       Parent parent = FXMLLoader.load(getClass().getResource("gestionEquipeInterface.fxml"));
-//       Scene scene = new Scene(parent);
-
-////
-//        Parent parent = FXMLLoader.load(getClass().getResource("gestionJoueurInterface.fxml"));
+//        Parent parent = FXMLLoader.load(getClass().getResource("AuthentificationUtilisateur.fxml"));
 //         Scene scene = new Scene(parent);
 
+        
+        
+       Parent parent = FXMLLoader.load(getClass().getResource("gestionEquipeInterface.fxml"));
+       Scene scene = new Scene(parent);
 
+// 
+//       Parent parent = FXMLLoader.load(getClass().getResource("gestionJoueurInterface.fxml"));
+//         Scene scene = new Scene(parent);
+
+//
+//         
+//         
+//           Parent parent = FXMLLoader.load(getClass().getResource("matchInterface.fxml"));
+//         Scene scene = new Scene(parent);
+//
 
       // scene.getStylesheets().add(getClass().getResource("ControlPanel.css").toExternalForm());
       // primaryStage.initStyle(StageStyle.UTILITY);
