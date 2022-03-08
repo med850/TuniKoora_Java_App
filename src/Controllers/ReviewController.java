@@ -23,10 +23,10 @@ public class ReviewController {
     
     
     public void ajouterReview(Review r){
-        String sql ="insert into review(description,article_id,user_id) Values(?,?,?)";
+        String sql ="insert into review(commentaire,article_id,user_id) Values(?,?,?)";
         try {
             ste=mc.prepareStatement(sql);
-            ste.setString(1, r.getDescriptionReview());
+            ste.setString(1, r.getCommentaire());
             ste.setInt(2, r.getIdArticle());
             ste.setInt(3, r.getIdUser());
             ste.executeUpdate();
@@ -46,7 +46,7 @@ public class ReviewController {
             while(rs.next()){
                 Review r = new Review();
                 r.setIdReview(rs.getInt("id"));
-                r.setDescriptionReview(rs.getString("description"));
+                r.setCommentaire(rs.getString("description"));
                 r.setIdArticle(rs.getInt("article_id"));
                 r.setIdUser(rs.getInt("user_id"));
                 review.add(r);
@@ -61,10 +61,10 @@ public class ReviewController {
 
      public List<Review> updateReview(Review r ){
         List<Review> review = new ArrayList<>();
-        String sql="UPDATE review SET description = ?, article_id = ?, user_id = ? WHERE id = 1";
+        String sql="UPDATE review SET commentaire = ?, article_id = ?, user_id = ? WHERE id = 1";
          try {
             ste=mc.prepareStatement(sql);
-            ste.setString(1, r.getDescriptionReview());
+            ste.setString(1, r.getCommentaire());
             ste.setInt(2, r.getIdArticle());
             ste.setInt(3, r.getIdUser());
             ste.executeUpdate();

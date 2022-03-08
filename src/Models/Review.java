@@ -13,15 +13,15 @@ import java.sql.Date;
  */
 public class Review {
     int idReview;
-    String descriptionReview;
+    String commentaire;
     int idArticle;
     int idUser;
 
     public Review(){};
     
-    public Review(int idReview, String descriptionReview, int idArticle, int idUser) {
+    public Review(int idReview, String commentaire, int idArticle, int idUser) {
         this.idReview = idReview;
-        this.descriptionReview = descriptionReview;
+        this.commentaire = commentaire;
         this.idArticle = idArticle;
         this.idUser = idUser;
     }
@@ -30,29 +30,24 @@ public class Review {
         return idReview;
     }
 
+    public String getCommentaire() {
+        return commentaire;
+    }
 
-    public String getDescriptionReview() {
-        return descriptionReview;
+    public void setCommentaire(String commentaire) {
+        this.commentaire = commentaire;
     }
 
     public int getIdArticle() {
         return idArticle;
     }
 
-    public int getIdUser() {
-        return idUser;
-    }
-
-    public void setIdReview(int idReview) {
-        this.idReview = idReview;
-    }
-
-    public void setDescriptionReview(String descriptionReview) {
-        this.descriptionReview = descriptionReview;
-    }
-
     public void setIdArticle(int idArticle) {
         this.idArticle = idArticle;
+    }
+
+    public int getIdUser() {
+        return idUser;
     }
 
     public void setIdUser(int idUser) {
@@ -61,8 +56,13 @@ public class Review {
 
     @Override
     public String toString() {
-        return "Review{" + "idReview=" + idReview + ", descriptionReview=" + descriptionReview + ", idArticle=" + idArticle + ", idUser=" + idUser + '}';
+        return "Review{" + "idReview=" + idReview + ", commentaire=" + commentaire + ", idArticle=" + idArticle + ", idUser=" + idUser + '}';
     }
-    
-    
+
+    public void setIdReview(int idReview) {
+        this.idReview = idReview;
+    }
+
+
+       
 }
