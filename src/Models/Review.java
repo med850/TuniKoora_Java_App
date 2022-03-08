@@ -12,10 +12,10 @@ import java.sql.Date;
  * @author wassim
  */
 public class Review {
-    int idReview;
-    String commentaire;
-    int idArticle;
-    int idUser;
+    private int idReview;
+    private String commentaire;
+    private int idArticle;
+    private int idUser;
 
     public Review(){};
     
@@ -30,24 +30,29 @@ public class Review {
         return idReview;
     }
 
-    public String getCommentaire() {
-        return commentaire;
-    }
 
-    public void setCommentaire(String commentaire) {
-        this.commentaire = commentaire;
+    public String getcommentaire() {
+        return commentaire;
     }
 
     public int getIdArticle() {
         return idArticle;
     }
 
-    public void setIdArticle(int idArticle) {
-        this.idArticle = idArticle;
-    }
-
     public int getIdUser() {
         return idUser;
+    }
+
+    public void setIdReview(int idReview) {
+        this.idReview = idReview;
+    }
+
+    public void setcommentaire(String commentaire) {
+        this.commentaire = commentaire;
+    }
+
+    public void setIdArticle(int idArticle) {
+        this.idArticle = idArticle;
     }
 
     public void setIdUser(int idUser) {
@@ -59,10 +64,6 @@ public class Review {
         return "Review{" + "idReview=" + idReview + ", commentaire=" + commentaire + ", idArticle=" + idArticle + ", idUser=" + idUser + '}';
     }
 
-    public void setIdReview(int idReview) {
-        this.idReview = idReview;
-    }
 
-
-       
+    
 }

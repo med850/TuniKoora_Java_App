@@ -124,32 +124,64 @@ public class EquipeController {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-            
-             
-        
               
               
               
               return equipeId;
               
               
-        }       
+        }  
+          
+          
+          
+          
+          
+          
+        public String getEquipeNom(int idEquipe){
+            
+             String equipeName = "";
+            
+               mc=MaConnexion.getInstance().getCnx();
+
+      
+        
+        String sql="select * from equipe where id = ?";
+        try {
+            ste=mc.prepareStatement(sql);
+            ste.setInt(1, idEquipe);
+            ResultSet rs=ste.executeQuery();
+            while(rs.next()){
+               
+               equipeName = rs.getString("nom");
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+              
+              
+              
+              return equipeName;
+              
+            
+            
+            
+        }  
               
               
      
-          public boolean checkLivraison(Equipe e) throws SQLException {
-        int count = 0;
-        String sql=("SELECT Count(*) from equipe WHERE id='"
-                    + e.getId() + "'");
-        ste=mc.prepareStatement(sql);
-            ResultSet rs=ste.executeQuery();
-        if (rs.next())
-            count = rs.getInt(1);
-        if (count == 0)
-            return false;
-        else
-            return true;
-}
+//          public boolean checkLivraison(Equipe e) throws SQLException {
+//        int count = 0;
+//        String sql=("SELECT Count(*) from equipe WHERE id='"
+//                    + e.getId() + "'");
+//        ste=mc.prepareStatement(sql);
+//            ResultSet rs=ste.executeQuery();
+//        if (rs.next())
+//            count = rs.getInt(1);
+//        if (count == 0)
+//            return false;
+//        else
+//            return true;
+//}
           
           
           

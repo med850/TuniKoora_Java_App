@@ -10,6 +10,7 @@ import Controllers.EquipeController;
 import Controllers.JoueurController;
 import Models.Equipe;
 import Models.Joueur;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -43,8 +44,6 @@ import tools.MaConnexion;
 public class GestionJoueurInterfaceController implements Initializable {
 
     @FXML
-    private TableColumn<Joueur, Integer> idJoueur;
-    @FXML
     private TableColumn<Joueur, String> NomJoueur;
     @FXML
     private TableColumn<Joueur, String> prenomJoueur;
@@ -71,7 +70,7 @@ public class GestionJoueurInterfaceController implements Initializable {
     
  EquipeController eq1 = new EquipeController();
    
-    
+    //   private static HttpURLConnection connection;
     
     
 //    final ObservableList options = FXCollections.observableArrayList();
@@ -90,7 +89,7 @@ public class GestionJoueurInterfaceController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        
+        idJ.setVisible(false);
           mc=MaConnexion.getInstance().getCnx();
 
         joueurList = FXCollections.observableArrayList();
@@ -115,11 +114,13 @@ public class GestionJoueurInterfaceController implements Initializable {
         
 
         
-         idJoueur.setCellValueFactory(new PropertyValueFactory<Joueur, Integer>("id"));
+        // idJoueur.setCellValueFactory(new PropertyValueFactory<Joueur, Integer>("id"));
         NomJoueur.setCellValueFactory(new PropertyValueFactory<Joueur, String>("nom"));
           prenomJoueur.setCellValueFactory(new PropertyValueFactory<Joueur, String>("prenom"));
           posteJoueur.setCellValueFactory(new PropertyValueFactory<Joueur, String>("poste"));
         telJoueur.setCellValueFactory(new PropertyValueFactory<Joueur, Integer>("tel"));
+         
+
 
 
 
@@ -202,21 +203,59 @@ public class GestionJoueurInterfaceController implements Initializable {
 
 
     @FXML
-    private void addJ(MouseEvent event) {
+    private void addJ(MouseEvent event) throws SQLException {
                
  
           // int id = Integer.parseInt(idJ.getText());
            String nom = nomJ.getText();
            String prenom = prenomJ.getText();
            String poste = posteJ.getText();
-           int tel = Integer.parseInt(telJ.getText());
+           
+           String tel1 = telJ.getText();
             int equipe_id = Integer.valueOf(eq1.getEquipeId(comboBox.getSelectionModel().getSelectedItem().toString()));
             
           //  System.out.println(equipe_id);
 
+          
+          String sql="select * from joueur where tel ='"+tel1+"'";
+        ste=mc.prepareStatement(sql);
+            ResultSet rs=ste.executeQuery();
+            if(rs.next() == true){
+                
+                  Alert alert = new Alert(Alert.AlertType.ERROR);
+             alert.setHeaderText("ERROR");
+             alert.setContentText("Joueur deja existe");
+             alert.showAndWait();
+             
+               nomJ.setText(null);
+          prenomJ.setText(null);
+        posteJ.setText(null);
+        telJ.setText(null);
+                
+            }else{
+          
+          
+          
+          
+            if(tel1.length()!=8){
+            
+             Alert alert = new Alert(Alert.AlertType.ERROR);
+             alert.setHeaderText("ERROR");
+             alert.setContentText("La taile de votre numéro doit égale 8");
+             alert.showAndWait();}
+        
+         else if(!tel1.matches("^[0-9]*$")){
+            
+              Alert alert = new Alert(Alert.AlertType.ERROR);
+             alert.setHeaderText("ERROR");
+             alert.setContentText("Tel doit contenir que des nombres");
+             alert.showAndWait();
+            
+            
+        }
+          
 
-
-          if (nom.isEmpty() || prenom.isEmpty() || poste.isEmpty()){
+         else if (nom.isEmpty() || prenom.isEmpty() || poste.isEmpty() ||tel1.isEmpty()){
               
                Alert alert = new Alert(Alert.AlertType.ERROR);
              alert.setHeaderText("ERROR");
@@ -226,7 +265,7 @@ public class GestionJoueurInterfaceController implements Initializable {
               
           }
           else{
-              
+              int tel = Integer.parseInt(telJ.getText());
                Joueur j=new Joueur(2,nom,prenom,poste,tel,equipe_id);
              JoueurController ec = new JoueurController();
              ec.ajouterJoueur(j);
@@ -248,6 +287,7 @@ public class GestionJoueurInterfaceController implements Initializable {
           
           
           
+            } 
          
         
     }
@@ -277,24 +317,46 @@ public class GestionJoueurInterfaceController implements Initializable {
             String nom = nomJ.getText();
            String prenom = prenomJ.getText();
            String poste = posteJ.getText();
-           int tel = Integer.parseInt(telJ.getText());
+            String tel1 = telJ.getText();
+
+         
             int equipe_id = Integer.valueOf(eq1.getEquipeId(comboBox.getSelectionModel().getSelectedItem().toString()));
             
           //  System.out.println(equipe_id);
 
+          
+          
+           if(tel1.length()!=8){
+            
+             Alert alert = new Alert(Alert.AlertType.ERROR);
+             alert.setHeaderText("ERROR");
+             alert.setContentText("La taile de votre numéro doit égale 8");
+             alert.showAndWait();}
+        
+         else if(!tel1.matches("^[0-9]*$")){
+            
+              Alert alert = new Alert(Alert.AlertType.ERROR);
+             alert.setHeaderText("ERROR");
+             alert.setContentText("Tel doit contenir que des nombres");
+             alert.showAndWait();
+            
+            
+        }
+          
 
-
-          if (nom.isEmpty() || prenom.isEmpty() || poste.isEmpty()){
+         else if (nom.isEmpty() || prenom.isEmpty() || poste.isEmpty() ||tel1.isEmpty()){
               
                Alert alert = new Alert(Alert.AlertType.ERROR);
              alert.setHeaderText("ERROR");
-             alert.setContentText("Insérer toutes les informations avant de valider la modification");
+             alert.setContentText("Il existe un champs vide");
              alert.showAndWait();
               
               
           }
+
+
           else {
-              
+                int tel = Integer.parseInt(telJ.getText());
                Joueur j=new Joueur(2,nom,prenom,poste,tel,equipe_id);
              JoueurController ec = new JoueurController();
              ec.ajouterJoueur(j);

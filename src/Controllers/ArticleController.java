@@ -24,7 +24,7 @@ public class ArticleController {
     
     
     public void ajouterArticle(Article e){
-            String sql="INSERT INTO article(titre,description,user_id,dateArticle) VALUES(?,?,?)";
+            String sql="INSERT INTO article(titre,description,user_id) VALUES(?,?,?)";
         
         try {
             ste=mc.prepareStatement(sql);
@@ -51,7 +51,6 @@ public class ArticleController {
                 a.setTitreArticle(rs.getString("titre"));
                 a.setDescriptionArticle(rs.getString("description"));
                 a.setIdUser(rs.getInt("user_id"));
-               
                 article.add(a);
             }
         } catch (SQLException ex) {

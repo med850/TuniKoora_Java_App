@@ -5,6 +5,8 @@
  */
 package Models;
 
+import org.apache.commons.codec.digest.DigestUtils;
+
 /**
  *
  * @author aroua
@@ -28,6 +30,24 @@ public class Users {
         this.repeatpassword = repeatpassword;
         this.typeuser = typeuser;
     }
+
+    public Users(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
+
+    public Users(int cin, int tel, String nom, String prenom, String email, String password, String repeatpassword, String typeuser) {
+        this.cin = cin;
+        this.tel = tel;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.email = email;
+        this.password = password;
+        this.repeatpassword = repeatpassword;
+        this.typeuser = typeuser;
+    }
+
+    
 
     @Override
     public String toString() {
@@ -95,11 +115,11 @@ public class Users {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = DigestUtils.shaHex(password);
     }
 
     public void setRepeatpassword(String repeatpassword) {
-        this.repeatpassword = repeatpassword;
+        this.repeatpassword = DigestUtils.shaHex(repeatpassword);
     }
 
     public void setTypeuser(String typeuser) {

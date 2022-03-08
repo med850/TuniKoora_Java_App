@@ -27,21 +27,21 @@ public class NewFXMain extends Application {
     public void start(Stage primaryStage) throws IOException {
         
         
+       //  new dataProviderController().getData("France");
         
-        
-//        Parent parent = FXMLLoader.load(getClass().getResource("AuthentificationUtilisateur.fxml"));
-//         Scene scene = new Scene(parent);
+        Parent parent = FXMLLoader.load(getClass().getResource("AuthentificationUtilisateur.fxml"));
+         Scene scene = new Scene(parent);
 
         
-        
-       Parent parent = FXMLLoader.load(getClass().getResource("gestionEquipeInterface.fxml"));
-       Scene scene = new Scene(parent);
+////////        
+//       Parent parent = FXMLLoader.load(getClass().getResource("gestionEquipeInterface.fxml"));
+//       Scene scene = new Scene(parent);
 
-// 
+ 
 //       Parent parent = FXMLLoader.load(getClass().getResource("gestionJoueurInterface.fxml"));
 //         Scene scene = new Scene(parent);
-
-//
+////
+////
 //         
 //         
 //           Parent parent = FXMLLoader.load(getClass().getResource("matchInterface.fxml"));
@@ -52,8 +52,10 @@ public class NewFXMain extends Application {
       // primaryStage.initStyle(StageStyle.UTILITY);
 //        primaryStage.setTitle("Gestion des équipes");
 
-        primaryStage.setTitle("Gestion des joueurs");
+        primaryStage.setTitle("Tunikoora");
+      //  primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.setScene(scene);
+          primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.show();
     }
 

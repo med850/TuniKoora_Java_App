@@ -45,6 +45,8 @@ import Models.Match;
 import Models.Participation;
 import Models.Equipe;
 import Models.Joueur;
+import java.io.IOException;
+
 
 import tools.MaConnexion;
 
@@ -54,7 +56,7 @@ public class Main {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args)  {
        MaConnexion m = MaConnexion.getInstance();
        
        
@@ -233,7 +235,12 @@ public class Main {
 //         System.out.println(pc.supprimerParticipation());
 //         System.out.println(pc.afficherParticipation());
 /************************************************************************************************* */  
-
+      //  new dataProviderController().getData("France");
+      
+      
+      
+//      dataProviderService dp = new dataProviderService();
+//      dp.getData();
   }
       }
 

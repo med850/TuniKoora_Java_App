@@ -5,15 +5,19 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import tools.MaConnexion;
 
 
 public class UserController {
-   
+   Statement st;
     Connection mc;
     PreparedStatement ste;
+    ResultSet rs;
     
     
       public UserController() {
@@ -21,7 +25,7 @@ public class UserController {
     }
     
     
-    public void ajouterUser(Users u){
+    public boolean ajouterUser(Users u){
         String sql ="insert into users(cin,nom,prenom,tel,email,password,repeatpassword,typeuser) Values(?,?,?,?,?,?,?,?)";
         try {
             ste=mc.prepareStatement(sql);
@@ -38,6 +42,7 @@ public class UserController {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
+        return false;
         
     }
     
@@ -107,5 +112,40 @@ public class UserController {
         }
         
         return utilisateur;
+}
+        public int GetIdUserbyEmail(String value) {
+        String sql = "select id from users where email = '" + value + "';";
+
+        int id = 0;
+        try {
+            ste = mc.prepareStatement(sql);
+            rs = ste.executeQuery(sql);
+            while (rs.next()) {//parcourir le resultset
+                id = rs.getInt("id");
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserController.class
+                    .getName()).log(Level.SEVERE, null, ex);
+        }
+        return id;
+    }
+        public boolean ResetPassword(String password, int id) throws SQLException {
+        String sql = "UPDATE users SET password=? WHERE id=?";
+        try {
+            Users u = new Users();
+            ste = mc.prepareStatement(sql);
+            ste.setString(1, u.getPassword());
+            ste.setInt(2, id);
+
+            ste.executeUpdate();
+            return true;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserController.class
+                    .getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
 }
 }

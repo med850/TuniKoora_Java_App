@@ -12,78 +12,68 @@ public class Ticket {
 
     }
 
-
-      public Ticket(int id, String equipeA, String equipeB, int prix,int match_id, int user_id){
+    public Ticket(int id, int prix, int match_id, int user_id, String equipeA, String equipeB) {
         this.id = id;
-        this.equipeA = equipeA;
-        this.equipeB = equipeB;
         this.prix = prix;
         this.match_id = match_id;
         this.user_id = user_id;
-       
+        this.equipeA = equipeA;
+        this.equipeB = equipeB;
     }
-
-    @Override
-    public String toString() {
-        return "Produit{" + "id=" + id + ", equipeA=" + equipeA + ", equipeB=" + equipeB + ", prix=" + prix + ", match_id=" + match_id + ", user_id=" + user_id +  '}';
-    }
-      
-      
-      
-      
 
     public int getId() {
         return id;
+    }
+
+    public int getPrix() {
+        return prix;
+    }
+
+    public int getMatch_id() {
+        return match_id;
+    }
+
+    public int getUser_id() {
+        return user_id;
+    }
+
+    public String getEquipeA() {
+        return equipeA;
+    }
+
+    public String getEquipeB() {
+        return equipeB;
     }
 
     public void setId(int id) {
         this.id = id;
     }
 
-    public int getprix() {
-        return prix;
-    }
-
-    public void setprix(int prix) {
+    public void setPrix(int prix) {
         this.prix = prix;
     }
 
-    public int getuser_id() {
-        return user_id;
-    }
-    
-    public int getmatch_id() {
-        return match_id;
-    }
-
-    public void setmatch_id(int match_id) {
+    public void setMatch_id(int match_id) {
         this.match_id = match_id;
     }
 
-    public void setuser_id(int user_id) {
+    public void setUser_id(int user_id) {
         this.user_id = user_id;
     }
 
-    public String getequipeA() {
-        return equipeA;
-    }
-
-    public void setequipeA(String equipeA) {
+    public void setEquipeA(String equipeA) {
         this.equipeA = equipeA;
     }
 
-    public String getequipeB() {
-        return equipeB;
-    }
-
-    public void setequipeB(String equipeB) {
+    public void setEquipeB(String equipeB) {
         this.equipeB = equipeB;
     }
 
-      
-      
-      
-      
-      
+    public String getProxtot() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+
+
 
 }

@@ -29,11 +29,11 @@ public class TicketController {
         String sql ="insert into ticket(equipeA,equipeB,prix,match_id,user_id) Values(?,?,?,?,?)";
         try {
             ste=mc.prepareStatement(sql);
-            ste.setString(1, t.getequipeA());
-            ste.setString(2, t.getequipeB());
-            ste.setInt(3, t.getprix());
-            ste.setInt(4, t.getmatch_id());
-            ste.setInt(5, t.getuser_id());
+            ste.setString(1, t.getEquipeA());
+            ste.setString(2, t.getEquipeB());
+            ste.setInt(3, t.getPrix());
+            ste.setInt(4, t.getMatch_id());
+            ste.setInt(5, t.getUser_id());
             ste.executeUpdate();
             System.out.println("ticket Ajoutée");
         } catch (SQLException ex) {
@@ -54,11 +54,11 @@ public class TicketController {
             while(rs.next()){
                 Ticket t = new Ticket();
                 t.setId(rs.getInt("id"));
-                t.setequipeA(rs.getString("equipeA"));
-                t.setequipeB(rs.getString("equipeB"));
-                t.setprix(rs.getInt("prix"));
-                t.setmatch_id(rs.getInt("match_id"));
-                t.setuser_id(rs.getInt("user_id"));
+                t.setEquipeA(rs.getString("equipeA"));
+                t.setEquipeB(rs.getString("equipeB"));
+                t.setPrix(rs.getInt("prix"));
+                t.setMatch_id(rs.getInt("match_id"));
+                t.setUser_id(rs.getInt("user_id"));
                 ticket.add(t);
             }
         } catch (SQLException ex) {
@@ -76,11 +76,11 @@ public class TicketController {
          try {
             ste=mc.prepareStatement(sql);
              ste=mc.prepareStatement(sql);
-            ste.setString(1, t.getequipeA());
-            ste.setString(2, t.getequipeB());
-            ste.setInt(3, t.getprix());
-            ste.setInt(4, t.getmatch_id());
-            ste.setInt(5, t.getuser_id());
+            ste.setString(1, t.getEquipeA());
+            ste.setString(2, t.getEquipeB());
+            ste.setInt(3, t.getPrix());
+            ste.setInt(4, t.getMatch_id());
+            ste.setInt(5, t.getUser_id());
             ste.executeUpdate();
             System.out.println("Ticket Modifiée");
         } catch (SQLException ex) {
@@ -108,9 +108,41 @@ public class TicketController {
         
         return ticket;
     }  
-        
     
-    
-    
-    
+     
+     
+      public int getTicketId(String tour){
+           
+            int ticketId = 0;
+           
+               mc=MaConnexion.getInstance().getCnx();
+
+     
+       
+        String sql="select * from ticket where tour = ?";
+        try {
+            ste=mc.prepareStatement(sql);
+            ste.setString(1, tour);
+            ResultSet rs=ste.executeQuery();
+            while(rs.next()){
+               
+               ticketId = rs.getInt("id");
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+           
+             
+       
+             
+             
+             
+              return ticketId;
+             
+             
+        }      
+
+     
+     
+     
 }

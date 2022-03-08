@@ -16,6 +16,7 @@ import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+import java.awt.Color;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -36,6 +37,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -43,12 +45,18 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import javax.swing.JOptionPane;
 
@@ -61,8 +69,7 @@ import tools.MaConnexion;
  */
 public class GestionEquipeInterfaceController implements Initializable {
 
-    @FXML
-    private TableColumn<Equipe, Integer> idEquipe;
+  //  private TableColumn<Equipe, Integer> idEquipe;
     @FXML
     private TableColumn<Equipe, String> NomEquipe;
     @FXML
@@ -88,6 +95,7 @@ public class GestionEquipeInterfaceController implements Initializable {
     private TextField idEq;
     @FXML
     private TextField search;
+    private Button closeBtn;
 //        int index = -1;
 //        Connection cn = null;
 //        ResultSet rs = null;
@@ -98,12 +106,12 @@ public class GestionEquipeInterfaceController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        
+        idEq.setVisible(false);
            mc=MaConnexion.getInstance().getCnx();
 
         equipeList = FXCollections.observableArrayList();
         
-        String sql="select * from equipe order by classement ASC";
+        String sql="select * from equipe order by classement DESC";
         try {
             ste=mc.prepareStatement(sql);
             ResultSet rs=ste.executeQuery();
@@ -120,7 +128,7 @@ public class GestionEquipeInterfaceController implements Initializable {
         
 
         
-         idEquipe.setCellValueFactory(new PropertyValueFactory<Equipe, Integer>("id"));
+       //  idEquipe.setCellValueFactory(new PropertyValueFactory<Equipe, Integer>("id"));
         NomEquipe.setCellValueFactory(new PropertyValueFactory<Equipe, String>("nom"));
         ClassementEquipe.setCellValueFactory(new PropertyValueFactory<Equipe, String>("classement"));
 
@@ -144,29 +152,73 @@ public class GestionEquipeInterfaceController implements Initializable {
     @FXML
     private void addEquipe(MouseEvent event) throws IOException, SQLException {
         
+         String nom = nomEq.getText();
+        String cls = classementEq.getText();
+        
+        String sql="select * from equipe where nom='"+nom+"'";
+        ste=mc.prepareStatement(sql);
+            ResultSet rs=ste.executeQuery();
+            if(rs.next() == true){
+                
+                  Alert alert = new Alert(Alert.AlertType.ERROR);
+             alert.setHeaderText("ERROR");
+             alert.setContentText("Equipe deja existe");
+             alert.showAndWait();
+             
+               idEq.setText(null);
+          nomEq.setText(null);
+        classementEq.setText(null);
+                
+            }else{
+//        if(cls.length()!=2){
+//            
+//             Alert alert = new Alert(Alert.AlertType.ERROR);
+//             alert.setHeaderText("ERROR");
+//             alert.setContentText("La taile de classement saisie > 2");
+//             alert.showAndWait();}
+            
+         if(!cls.matches("^[0-9]*$")){
+            
+              Alert alert = new Alert(Alert.AlertType.ERROR);
+             alert.setHeaderText("ERROR");
+             alert.setContentText("Points doit contenir que des nombres");
+             alert.showAndWait();
+            
+            
+        } else if(nom.isEmpty()){
+             Alert alert = new Alert(Alert.AlertType.ERROR);
+             alert.setHeaderText("ERROR");
+             alert.setContentText("Insérer toutes les informations avant de valider l'insertion");
+             alert.showAndWait();}
+        
+        
+       // if(cls.matches("^[0-9]*$")){
+        
+            else{
+        
         Equipe e1= new Equipe();
         
         EquipeController eq2 = new EquipeController();
-         String nom = nomEq.getText();
+         //String nom = nomEq.getText();
         int classement = Integer.parseInt(classementEq.getText());
            
         
         
-         if (nom.isEmpty()){
-             Alert alert = new Alert(Alert.AlertType.ERROR);
-             alert.setHeaderText("ERROR");
-             alert.setContentText("Insérer toutes les informations avant de valider l'insertion");
-             alert.showAndWait();
-               
-//         } else if (eq2.checkLivraison(e1)==true){
-//              Alert alert = new Alert(Alert.AlertType.ERROR);
+//         if (nom.isEmpty()){
+//             Alert alert = new Alert(Alert.AlertType.ERROR);
 //             alert.setHeaderText("ERROR");
-//             alert.setContentText("Element existant");
+//             alert.setContentText("Insérer toutes les informations avant de valider l'insertion");
 //             alert.showAndWait();
-
-
-           
-         }else{
+//               
+////         } else if (eq2.checkLivraison(e1)==true){
+////              Alert alert = new Alert(Alert.AlertType.ERROR);
+////             alert.setHeaderText("ERROR");
+////             alert.setContentText("Element existant");
+////             alert.showAndWait();
+//
+//
+//           
+//         }else{
              
              Equipe e=new Equipe(1,nom,classement);
              EquipeController ec = new EquipeController();
@@ -177,7 +229,7 @@ public class GestionEquipeInterfaceController implements Initializable {
                 alert.showAndWait();             
         
         
-         }
+         
          
           refresh();
           
@@ -186,6 +238,18 @@ public class GestionEquipeInterfaceController implements Initializable {
           nomEq.setText(null);
         classementEq.setText(null);
         
+        
+        
+//        }else{
+//            
+//            
+//           // classementEq.setStyle("-fx-background-color: #ff7b5a;");
+//            JOptionPane.showMessageDialog(null, "Interdit d'utiliser un caractère");
+//            
+//        }
+//       // classementEq.setStyle("-fx-background-color: white;");
+    }
+            }
     }
     
 
@@ -358,20 +422,54 @@ public class GestionEquipeInterfaceController implements Initializable {
         
         Optional<ButtonType>result =  alert.showAndWait(); 
         if(result.get() == ButtonType.OK){
+            
+            
+              String nom = nomEq.getText();
+        String cls = classementEq.getText();
+//        if(cls.length()!=2){
+//            
+//             Alert alert = new Alert(Alert.AlertType.ERROR);
+//             alert.setHeaderText("ERROR");
+//             alert.setContentText("La taile de classement saisie > 2");
+//             alert.showAndWait();}
+            
+         if(!cls.matches("^[0-9]*$")){
+            
+              Alert alert1 = new Alert(Alert.AlertType.ERROR);
+             alert.setHeaderText("ERROR");
+             alert.setContentText("Points doit contenir que des nombres");
+             alert.showAndWait();
+            
+            
+        } else if(nom.isEmpty() || cls.isEmpty()){
+             Alert alert2 = new Alert(Alert.AlertType.ERROR);
+             alert.setHeaderText("ERROR");
+             alert.setContentText("Il existe un champ vide");
+             alert.showAndWait();}
+        
+       
+        else{
+            
                 
         try{
              mc=MaConnexion.getInstance().getCnx();
               String value1 = idEq.getText();
              String value2 = nomEq.getText();
-             String value3 = classementEq.getText();
+              int value3 = Integer.parseInt(classementEq.getText());
              
              String sql = "update equipe set id = '"+value1+"', nom = '"+value2+"', classement='"+value3+"' where id ='"+value1+"'";
              ste=mc.prepareStatement(sql);
              ste.execute();
             JOptionPane.showMessageDialog(null, "Equipe modifié");
+            
+             idEq.setText(null);
+          nomEq.setText(null);
+        classementEq.setText(null);
+            
         }catch(Exception e){
                JOptionPane.showMessageDialog(null,e);
 
+        }
         }
         }else{
             
@@ -380,9 +478,9 @@ public class GestionEquipeInterfaceController implements Initializable {
         classementEq.setText(null);
         
             
+        
+        
         }
-        
-        
         refresh();
     }
 
@@ -411,6 +509,11 @@ public class GestionEquipeInterfaceController implements Initializable {
         
             refresh();
             
+            
+             idEq.setText(null);
+          nomEq.setText(null);
+        classementEq.setText(null);
+            
         }else{
             
             
@@ -420,6 +523,8 @@ public class GestionEquipeInterfaceController implements Initializable {
         
             
         }
+        
+        
         
     }
 
@@ -443,7 +548,7 @@ public class GestionEquipeInterfaceController implements Initializable {
 
         equipeList = FXCollections.observableArrayList();
         
-        String sql="select * from equipe order by classement ASC";
+        String sql="select * from equipe order by classement DESC";
         try {
             ste=mc.prepareStatement(sql);
             ResultSet rs=ste.executeQuery();
@@ -517,6 +622,113 @@ public class GestionEquipeInterfaceController implements Initializable {
         sortedData.comparatorProperty().bind(equipeTable.comparatorProperty());
         
         equipeTable.setItems(sortedData);
+        
+        
+    }
+
+    @FXML
+    private void widgetCorona(MouseEvent event) throws IOException {
+        
+        
+         Stage primaryStage = new Stage();
+          Parent parent = FXMLLoader.load(getClass().getResource("widgetCorona.fxml"));
+       //   Scene scene = new Scene(new StackPane(new Label("hello")), 200, 200);
+          Scene scene = new Scene(parent);
+        
+        primaryStage.setScene(scene);
+        primaryStage.show();
+        
+        
+    }
+
+    @FXML
+    private void addVictoire(MouseEvent event) {
+        
+        final int victoire = 3;
+        
+         Equipe clickedEquipe = equipeTable.getSelectionModel().getSelectedItem();
+        
+         try{
+             mc=MaConnexion.getInstance().getCnx();
+              String value1 = idEq.getText();
+           
+             int value3 = Integer.parseInt(classementEq.getText())+victoire;
+             
+             String sql = "update equipe set classement='"+value3+"' where id ='"+value1+"'";
+             ste=mc.prepareStatement(sql);
+             ste.execute();
+            JOptionPane.showMessageDialog(null, "3 points Ajouté");
+        }catch(Exception e){
+               JOptionPane.showMessageDialog(null,e);
+
+        }
+         
+         
+         refresh();
+         idEq.setText(null);
+          nomEq.setText(null);
+        classementEq.setText(null);
+    }
+
+    @FXML
+    private void addNull(MouseEvent event) {
+        
+          final int n = 1;
+        
+         Equipe clickedEquipe = equipeTable.getSelectionModel().getSelectedItem();
+        
+         try{
+             mc=MaConnexion.getInstance().getCnx();
+              String value1 = idEq.getText();
+           
+             int value3 = Integer.parseInt(classementEq.getText())+n;
+             
+             String sql = "update equipe set classement='"+value3+"' where id ='"+value1+"'";
+             ste=mc.prepareStatement(sql);
+             ste.execute();
+            JOptionPane.showMessageDialog(null, "1 point Ajouté");
+        }catch(Exception e){
+               JOptionPane.showMessageDialog(null,e);
+
+        }
+         
+         
+         refresh();
+          idEq.setText(null);
+          nomEq.setText(null);
+        classementEq.setText(null);
+        
+        
+        
+    }
+
+    @FXML
+    private void addDefeat(MouseEvent event) {
+        
+      JOptionPane.showMessageDialog(null, "Auncune point ajouté");
+         
+         refresh();
+         idEq.setText(null);
+          nomEq.setText(null);
+        classementEq.setText(null);
+        
+        
+    }
+
+    private void closeButton(ActionEvent event) throws IOException {
+        
+        
+          Stage stage = (Stage) closeBtn.getScene().getWindow();
+                           stage.close();
+
+                           Stage primaryStage = new Stage();
+                           Parent parent = FXMLLoader.load(getClass().getResource("Home.fxml"));
+                           Scene scene = new Scene(parent);
+                           primaryStage.initStyle(StageStyle.UNDECORATED);
+
+                           
+                           primaryStage.setScene(scene);
+                           primaryStage.show();
         
         
     }

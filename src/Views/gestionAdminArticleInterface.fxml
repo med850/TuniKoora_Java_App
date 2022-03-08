@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="540.0" prefWidth="861.0" style="-fx-background-color: white;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.GestionAdminArticleInterfaceController">
+    <stylesheets>
+        <URL value="@gestionadminarticleinterface.css" />
+    </stylesheets>
+   <children>
+      <Pane layoutY="-27.0" prefHeight="99.0" prefWidth="862.0" style="-fx-background-color: #0598ff;">
+         <children>
+            <Text fill="WHITE" layoutX="27.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajouter article">
+               <font>
+                  <Font name="System Bold" size="32.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <Text layoutX="14.0" layoutY="179.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Titre" wrappingWidth="42.50927734375">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Text>
+      <Text layoutX="11.0" layoutY="240.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description" wrappingWidth="108.50927734375">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Text>
+      <TextArea fx:id="DescArticle" layoutX="125.0" layoutY="214.0" prefHeight="28.0" prefWidth="147.0" />
+      <TextArea fx:id="titreArticle" layoutX="125.0" layoutY="152.0" prefHeight="28.0" prefWidth="147.0" />
+      <Button fx:id="ajouterArticle" layoutX="369.0" layoutY="472.0" mnemonicParsing="false" onMouseClicked="#addArticle" prefHeight="31.0" prefWidth="133.0" style="-fx-background-color: #0598ff;" text="Ajouter article" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
+         </font></Button>
+      <TableView fx:id="tableArticle" layoutX="369.0" layoutY="199.0" onMouseClicked="#getSelected" prefHeight="258.0" prefWidth="423.0">
+        <columns>
+          <TableColumn fx:id="id" minWidth="0.0" prefWidth="0.0" text="ID" />
+          <TableColumn fx:id="titre" prefWidth="210.0" text="Titre" />
+            <TableColumn fx:id="desc" prefWidth="269.0" text="Description" />
+            <TableColumn fx:id="userId" minWidth="0.0" prefWidth="0.0" text="User_id" />
+        </columns>
+      </TableView>
+      <Button fx:id="supprimerArticle" layoutX="507.0" layoutY="472.0" mnemonicParsing="false" onMouseClicked="#deleteArticle" style="-fx-background-color: #0598ff;" text="Supprimer article" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
+         </font></Button>
+      <Button fx:id="modifierArticle" layoutX="657.0" layoutY="472.0" mnemonicParsing="false" onMouseClicked="#UpdateArticle" style="-fx-background-color: #0598ff;" text="Modifier article" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
+         </font></Button>
+      <TextArea fx:id="weatherTxt" layoutX="23.0" layoutY="335.0" prefHeight="28.0" prefWidth="147.0" />
+      <TextArea fx:id="recherche" layoutX="645.0" layoutY="152.0" prefHeight="28.0" prefWidth="147.0" />
+      <Button fx:id="pdf" layoutX="791.0" layoutY="473.0" mnemonicParsing="false" onMouseClicked="#createpdf" style="-fx-background-color: #0598ff;" text="pdf" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
+         </font></Button>
+      <Text fill="#0598ff" layoutX="14.0" layoutY="297.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Météo">
+         <font>
+            <Font name="System Bold" size="26.0" />
+         </font>
+      </Text>
+      <Text layoutX="22.0" layoutY="322.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quelle ville vous voulez recherche?">
+         <font>
+            <Font size="13.0" />
+         </font></Text>
+      <Button fx:id="weatherBtn" layoutX="181.0" layoutY="336.0" mnemonicParsing="false" onAction="#addWeather" style="-fx-background-color: #0598ff;" text="action" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
+         </font></Button>
+      <Text fx:id="showWeather" layoutX="30.0" layoutY="444.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <TextArea fx:id="idtxt" layoutX="23.0" layoutY="428.0" opacity="0.0" prefHeight="28.0" prefWidth="147.0" />
+   </children>
+</AnchorPane>

@@ -29,11 +29,11 @@ public class ProduitController {
         try {
             ste=mc.prepareStatement(sql);
             ste.setString(1, p.getNom());
-            ste.setInt(2, p.getprix());
-            ste.setInt(3, p.getqte());
-            ste.setString(4, p.getdescription());
+            ste.setInt(2, p.getPrix());
+            ste.setInt(3, p.getQte());
+            ste.setString(4, p.getDescription());
             ste.setString(5, p.getImage());
-            ste.setInt(6, p.getuser_id());
+            ste.setInt(6, p.getUser_id());
             ste.executeUpdate();
             System.out.println("produit Ajoutée");
         } catch (SQLException ex) {
@@ -55,11 +55,11 @@ public class ProduitController {
                 Produit p = new Produit();
                 p.setId(rs.getInt("id"));
                 p.setNom(rs.getString("nom"));
-                p.setprix(rs.getInt("prix"));
-                p.setqte(rs.getInt("qte"));
-                p.setdescription(rs.getString("description"));
+                p.setPrix(rs.getInt("prix"));
+                p.setQte(rs.getInt("qte"));
+                p.setDescription(rs.getString("description"));
                 p.setImage(rs.getString("image"));
-                p.setuser_id(rs.getInt("user_id"));
+                p.setUser_id(rs.getInt("user_id"));
                 produit.add(p);
             }
         } catch (SQLException ex) {
@@ -78,11 +78,11 @@ public class ProduitController {
             ste=mc.prepareStatement(sql);
              ste=mc.prepareStatement(sql);
             ste.setString(1, p.getNom());
-            ste.setInt(2, p.getprix());
-            ste.setInt(3, p.getqte());
-            ste.setString(4, p.getdescription());
+            ste.setInt(2, p.getPrix());
+            ste.setInt(3, p.getQte());
+            ste.setString(4, p.getDescription());
             ste.setString(5, p.getImage());
-            ste.setInt(6, p.getuser_id());
+            ste.setInt(6, p.getUser_id());
             ste.executeUpdate();
             System.out.println("Produit Modifiée");
         } catch (SQLException ex) {

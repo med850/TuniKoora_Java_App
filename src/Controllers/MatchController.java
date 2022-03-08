@@ -25,7 +25,7 @@ public class MatchController {
     
     
     public void ajouterMatch(Match m){
-        String sql ="INSERT INTO `match` (`localisation`, `arbitrePrincipale`, `tour`) VALUES (?,?,?)";
+        String sql ="INSERT INTO `matchtb` (`localisation`, `arbitrePrincipale`, `tour`) VALUES (?,?,?)";
         try {
             ste=mc.prepareStatement(sql);
    
@@ -105,6 +105,29 @@ public class MatchController {
   //
     
     
+     public String getParticipationId(int idM){
+
+            String tour ="" ;
+
+               mc=MaConnexion.getInstance().getCnx();
+
+
+
+        String sql="select * from matchtb where id = ?";
+        try {
+            ste=mc.prepareStatement(sql);
+            ste.setInt(1, idM);
+            ResultSet rs=ste.executeQuery();
+            while(rs.next()){
+
+               tour = rs.getString("tour");
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+   
+   return tour; 
     
+   }
     
 }

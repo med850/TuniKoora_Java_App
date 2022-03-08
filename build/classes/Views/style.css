@@ -2,45 +2,23 @@
  * Empty Stylesheet file.
  */
 
-.button
-{
--fx-background-color : #05071F;
--fx-text-fill : #e7e5e5;
-}
-.button:hover{
--fx-background-color : #10165F;
-}
-.button:pressed
-{
--fx-background-color : #1620A1;
+*{
+	-fx-base:#232323;
+	-fx-font-family:"Hack Nerd Font", "Noto Mono", Arial;
 }
 
-.scroll-pane {
-    -fx-background-color: #02030A;
+.contentText{
+    -fx-font-size : 14pt;
+    -fx-fill : black;
+    
 }
 
-.scroll-bar:horizontal, .scroll-bar:vertical{
-    -fx-background-color:transparent;
+.countryTitle{
+    -fx-font-size : 9pt;
+     -fx-fill : white;
 }
 
-.increment-button, .decrement-button {
-    -fx-background-color: transparent;
-    -fx-border-color: transparent;
-}
-
-.scroll-bar:horizontal .track,
-.scroll-bar:vertical .track{
-    -fx-background-color: transparent;
-    -fx-border-color: transparent;
-    -fx-background-radius: 0em;
-}
-
-.scroll-bar:horizontal .thumb,
-.scroll-bar:vertical .thumb {
-    -fx-background-color: #10165F;
-    -fx-background-radius: 5em;
-}
-
-.scroll-pane > .corner {
-    -fx-background-color: black;
+.mainTitle{
+    -fx-font-weight:bold;
+    -fx-font-size:20pt;
 }
